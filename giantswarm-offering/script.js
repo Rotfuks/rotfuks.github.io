@@ -1,7 +1,7 @@
 // Giant Swarm Website Interactive Features
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Interactive Platform Modules
+    // Interactive Platform Modules (simple version)
     const moduleCards = document.querySelectorAll('.module-card');
     const moduleDetails = document.querySelectorAll('.module-detail');
     
