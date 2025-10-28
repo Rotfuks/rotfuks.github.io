@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Platform - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f9fafb;
+            color: #111827;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Login */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+        }
+        
+        .login-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .logo {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        
+        /* Forms */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+        
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            color: #6b7280;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #111827;
+            border-bottom-color: #4f46e5;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .platform-badge {
+            background: #f3e8ff;
+            color: #6b21a8;
+        }
+        
+        .app-badge {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+        
+        .card.model-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card.model-card .card-body {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .model-card-content {
+            min-height: 380px;
+        }
+        
+        .model-card-actions {
+            margin-top: auto;
+        }
+        
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        /* Utilities */
+        .hidden {
+            display: none !important;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-sm {
+            font-size: 0.875rem;
+        }
+        
+        .text-gray {
+            color: #6b7280;
+        }
+        
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        
+        .mt-4 {
+            margin-top: 1rem;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .gap-1 {
+            gap: 0.5rem;
+        }
+        
+        .provider-icon {
+            font-size: 2rem;
+            margin-right: 0.75rem;
+        }
+        
+        .cost-positive {
+            color: #16a34a;
+        }
+        
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+        }
+        
+        .status-revoked {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+        }
+        
+        .api-key {
+            font-family: monospace;
+            background: #f3f4f6;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        
+        .provider-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.5rem;
+        }
+        
+        .provider-item:last-child {
+            border-bottom: none;
+        }
+        
+        .context-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .model-description-box {
+            margin-top: 0.75rem;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .model-summary {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .model-detail-section {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            border-left: 3px solid;
+        }
+        
+        .model-detail-title {
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .model-detail-content {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .model-detail-content ul {
+            margin: 0.25rem 0 0 0;
+            padding-left: 1.25rem;
+            list-style-type: disc;
+        }
+        
+        .model-detail-content li {
+            margin: 0.25rem 0;
+        }
+        
+        .recommended-badge {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+        }
+        
+        .cost-info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            align-items: baseline;
+        }
+        
+        .cost-label {
+            font-weight: 600;
+            color: #6b7280;
+            white-space: nowrap;
+        }
+        
+        .cost-value {
+            color: #111827;
+        }
+        
+        .usage-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+        }
+        
+        .usage-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .usage-stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+        
+        .usage-stat-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .platform-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .expand-toggle {
+            cursor: pointer;
+            color: #4f46e5;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+        
+        .expand-toggle:hover {
+            color: #4338ca;
+        }
+        
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .expandable-content.expanded {
+            max-height: 500px;
+        }
+        
+        /* Custom Dropdown with Checkboxes */
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            min-width: 160px;
+        }
+        
+        .dropdown-button {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .dropdown-button:hover {
+            border-color: #9ca3af;
+        }
+        
+        .dropdown-button.active {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .dropdown-arrow {
+            transition: transform 0.2s;
+        }
+        
+        .dropdown-arrow.open {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 0.25rem);
+            left: 0;
+            width: 100%;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            max-height: 250px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .dropdown-menu.open {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .dropdown-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .dropdown-item input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
+        }
+        
+        .dropdown-item label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.875rem;
+        }
+        
+        /* Marketplace Cards */
+        .marketplace-card {
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .marketplace-card .card-body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .marketplace-card-content {
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .marketplace-card-actions {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        
+        .context-category {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+        }
+        
+        .bg-blue-50 { background-color: #eff6ff; }
+        .bg-purple-50 { background-color: #faf5ff; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-yellow-50 { background-color: #fefce8; }
+        .bg-red-50 { background-color: #fef2f2; }
+        
+        .text-green-600 { color: #16a34a; }
+        .text-blue-600 { color: #2563eb; }
+        .text-purple-600 { color: #9333ea; }
+        .text-red-600 { color: #dc2626; }
+        .text-yellow-800 { color: #92400e; }
+        .text-yellow-700 { color: #a16207; }
+        .text-yellow-600 { color: #ca8a04; }
+        .text-red-800 { color: #991b1b; }
+        .text-red-700 { color: #b91c1c; }
+        .text-blue-800 { color: #1e40af; }
+        .text-blue-700 { color: #1d4ed8; }
+        .text-orange-600 { color: #ea580c; }
+        
+        .bg-yellow-100 { background-color: #fef3c7; }
+        .bg-green-100 { background-color: #dcfce7; }
+        
+        .bg-green-600 { background-color: #16a34a; }
+        .bg-blue-600 { background-color: #2563eb; }
+        .bg-gray-200 { background-color: #e5e7eb; }
+        
+        .border-l-4 { border-left-width: 4px; }
+        .border-yellow-400 { border-color: #facc15; }
+        .border-red-400 { border-color: #f87171; }
+        .border-blue-400 { border-color: #60a5fa; }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="logo"><img src="logo.png" alt="Logo"></div>
+            <h2>AI Platform</h2>
+            <p class="subtitle">Sign in to your account</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <select id="role">
+                        <option value="app">App Team Member</option>
+                        <option value="platform">Platform Team Member</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            
+            <p class="text-center text-sm text-gray mt-4">
+                Demo app - use any email/password combination
+            </p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="hidden">
+        <nav class="nav">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="nav-brand">
+                        <img src="logo.png" alt="Logo" style="width: 2rem; height: 2rem; object-fit: contain;">
+                        AI Platform
+                    </div>
+                    <div class="nav-links">
+                        <a href="#" class="nav-link active" onclick="showPage('api-keys')">🤖 Models</a>
+                        <a href="#" class="nav-link" onclick="showPage('marketplace')">🛒 Marketplace</a>
+                        <a href="#" class="nav-link platform-only hidden" onclick="showPage('governance')">⚖️ Governance</a>
+                    </div>
+                    <div class="user-info">
+                        <span id="userName"></span>
+                        <span id="userRole" class="user-badge"></span>
+                        <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- API Keys Page -->
+            <div id="apiKeysPage">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="mb-2">Models</h1>
+                        <p class="text-gray">Browse and access AI models from different providers</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <div id="appTeamButtons" class="hidden">
+                            <button class="btn btn-primary" onclick="showModelRequestForm()">🙋 Request New Model</button>
+                        </div>
+                        <div id="platformOnlyButtons" class="hidden">
+                            <button class="btn btn-secondary" onclick="showAddProviderForm()">+ Add Provider</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Provider Cards -->
+                <div class="grid grid-3 mb-8" id="providerGrid">
+                    <!-- GPT-4o -->
+                    <div class="card model-card" data-provider="gpt-4o" data-recommended="false">
+                        <div class="card-body">
+                            <div class="model-card-content">
+                                <!-- Header -->
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center gap-2">
+                                    <span class="provider-icon">🤖</span>
+                                    <div>
+                                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                                <h3>GPT-4o</h3>
+                                                <span class="recommended-badge platform-only hidden" style="display: none;" data-provider-badge="gpt-4o">⭐ Recommended</span>
+                                        </div>
+                                            <p class="text-sm text-gray">OpenAI</p>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                <!-- Summary -->
+                                <p class="model-summary">Most capable OpenAI model with advanced reasoning, multimodal understanding, and superior performance.</p>
+                                
+                                <!-- Use Cases -->
+                                <div class="model-detail-section" style="border-left-color: #2563eb;">
+                                    <div class="model-detail-title" style="color: #1e40af;">BEST FOR</div>
+                                    <div class="model-detail-content" style="color: #1e40af;">
+                                        <ul>
+                                            <li>Complex problem-solving</li>
+                                            <li>Advanced code generation</li>
+                                            <li>Creative content</li>
+                                        </ul>
+                                </div>
+                                </div>
+                                
+                                <!-- Pricing -->
+                                <div style="margin-top: 0.75rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem;">
+                                    <div class="cost-info">
+                                        <span class="cost-label">Per 1K tokens:</span>
+                                        <span class="cost-value" style="color: #1e40af;">$0.025</span>
+                        </div>
+                    </div>
+
+                                <!-- Usage Stats -->
+                                <div class="usage-stats-grid">
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">Total Cost</span>
+                                        <span class="usage-stat-value cost-positive" id="gpt-4o-cost">$247.85</span>
+                                        </div>
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">API Keys</span>
+                                        <span class="usage-stat-value" id="gpt-4o-keys">1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="model-card-actions">
+                                <!-- Actions -->
+                                <button class="btn btn-primary" onclick="createApiKey('gpt-4o', 'GPT-4o')">Access Model</button>
+                                
+                                <!-- Platform Actions -->
+                                <div class="platform-actions platform-only hidden">
+                                    <button class="btn btn-secondary" onclick="toggleRecommended('gpt-4o')" style="width: 100%;">Set as Recommended</button>
+                                    <button class="btn btn-danger" onclick="removeProvider('gpt-4o', 'GPT-4o')" style="width: 100%;">Remove</button>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Claude-3.5-sonnet -->
+                    <div class="card model-card" data-provider="claude-3.5-sonnet" data-recommended="false">
+                        <div class="card-body">
+                            <div class="model-card-content">
+                                <!-- Header -->
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="provider-icon">🧠</span>
+                                    <div>
+                                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                                <h3>Claude-3.5-sonnet</h3>
+                                                <span class="recommended-badge platform-only hidden" style="display: none;" data-provider-badge="claude-3.5-sonnet">⭐ Recommended</span>
+                                        </div>
+                                            <p class="text-sm text-gray">Anthropic</p>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                <!-- Summary -->
+                                <p class="model-summary">Latest Claude model with balanced performance and speed. 200K context window, Constitutional AI safety.</p>
+                                
+                                <!-- Use Cases -->
+                                <div class="model-detail-section" style="border-left-color: #9333ea;">
+                                    <div class="model-detail-title" style="color: #6b21a8;">BEST FOR</div>
+                                    <div class="model-detail-content" style="color: #6b21a8;">
+                                        <ul>
+                                            <li>Long-document analysis</li>
+                                            <li>Safe AI responses</li>
+                                            <li>Enterprise applications</li>
+                                        </ul>
+                                </div>
+                                </div>
+                                
+                                <!-- Pricing -->
+                                <div style="margin-top: 0.75rem; padding: 0.75rem; background: #faf5ff; border-radius: 0.5rem;">
+                                    <div class="cost-info">
+                                        <span class="cost-label">Per 1K tokens:</span>
+                                        <span class="cost-value" style="color: #6b21a8;">$0.015</span>
+                            </div>
+                        </div>
+                                
+                                <!-- Usage Stats -->
+                                <div class="usage-stats-grid">
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">Total Cost</span>
+                                        <span class="usage-stat-value cost-positive" id="claude-3.5-sonnet-cost">$89.32</span>
+                    </div>
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">API Keys</span>
+                                        <span class="usage-stat-value" id="claude-3.5-sonnet-keys">1</span>
+                </div>
+                    </div>
+                                    </div>
+                            
+                            <div class="model-card-actions">
+                                <!-- Actions -->
+                                <button class="btn btn-primary" onclick="createApiKey('claude-3.5-sonnet', 'Claude-3.5-sonnet')">Access Model</button>
+                                
+                                <!-- Platform Actions -->
+                                <div class="platform-actions platform-only hidden">
+                                    <button class="btn btn-secondary" onclick="toggleRecommended('claude-3.5-sonnet')" style="width: 100%;">Set as Recommended</button>
+                                    <button class="btn btn-danger" onclick="removeProvider('claude-3.5-sonnet', 'Claude-3.5-sonnet')" style="width: 100%;">Remove</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <!-- Claude-3-haiku -->
+                    <div class="card model-card" data-provider="claude-3-haiku" data-recommended="false">
+                        <div class="card-body">
+                            <div class="model-card-content">
+                                <!-- Header -->
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="provider-icon">🧠</span>
+                                <div>
+                                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                                <h3>Claude-3-haiku</h3>
+                                                <span class="recommended-badge platform-only hidden" style="display: none;" data-provider-badge="claude-3-haiku">⭐ Recommended</span>
+                                    </div>
+                                            <p class="text-sm text-gray">Anthropic</p>
+                                </div>
+                                </div>
+                            </div>
+                                
+                                <!-- Summary -->
+                                <p class="model-summary">Fastest Claude model optimized for speed and efficiency while maintaining high quality outputs.</p>
+                                
+                                <!-- Use Cases -->
+                                <div class="model-detail-section" style="border-left-color: #9333ea;">
+                                    <div class="model-detail-title" style="color: #6b21a8;">BEST FOR</div>
+                                    <div class="model-detail-content" style="color: #6b21a8;">
+                                        <ul>
+                                            <li>Quick responses</li>
+                                            <li>Real-time applications</li>
+                                            <li>Cost-sensitive workloads</li>
+                                        </ul>
+                        </div>
+                    </div>
+                                
+                                <!-- Pricing -->
+                                <div style="margin-top: 0.75rem; padding: 0.75rem; background: #faf5ff; border-radius: 0.5rem;">
+                                    <div class="cost-info">
+                                        <span class="cost-label">Per 1K tokens:</span>
+                                        <span class="cost-value" style="color: #6b21a8;">$0.003</span>
+                </div>
+            </div>
+
+                                <!-- Usage Stats -->
+                                <div class="usage-stats-grid">
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">Total Cost</span>
+                                        <span class="usage-stat-value cost-positive" id="claude-3-haiku-cost">$0.00</span>
+                    </div>
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">API Keys</span>
+                                        <span class="usage-stat-value" id="claude-3-haiku-keys">0</span>
+                                    </div>
+                                </div>
+                </div>
+
+                            <div class="model-card-actions">
+                                <!-- Actions -->
+                                <button class="btn btn-primary" onclick="createApiKey('claude-3-haiku', 'Claude-3-haiku')">Access Model</button>
+                                
+                                <!-- Platform Actions -->
+                                <div class="platform-actions platform-only hidden">
+                                    <button class="btn btn-secondary" onclick="toggleRecommended('claude-3-haiku')" style="width: 100%;">Set as Recommended</button>
+                                    <button class="btn btn-danger" onclick="removeProvider('claude-3-haiku', 'Claude-3-haiku')" style="width: 100%;">Remove</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Llama-3.1 -->
+                    <div class="card model-card" data-provider="llama-3.1" data-recommended="true">
+                        <div class="card-body">
+                            <div class="model-card-content">
+                                <!-- Header -->
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="provider-icon">🏠</span>
+                                        <div>
+                                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                                <h3>Llama-3.1</h3>
+                                                <span class="recommended-badge" data-provider-badge="llama-3.1">⭐ Recommended</span>
+                            </div>
+                                            <p class="text-sm text-gray">Ollama (Self-hosted)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                                <!-- Summary -->
+                                <p class="model-summary">Meta's open-source model running locally on your infrastructure. Full data sovereignty and privacy.</p>
+                                
+                                <!-- Use Cases -->
+                                <div class="model-detail-section" style="border-left-color: #16a34a;">
+                                    <div class="model-detail-title" style="color: #166534;">BEST FOR</div>
+                                    <div class="model-detail-content" style="color: #166534;">
+                                        <ul>
+                                            <li>Data privacy and GDPR</li>
+                                            <li>Offline environments</li>
+                                            <li>Cost-sensitive workloads</li>
+                                        </ul>
+                            </div>
+                            </div>
+                                
+                                <!-- Pricing -->
+                                <div style="margin-top: 0.75rem; padding: 0.75rem; background: #f0fdf4; border-radius: 0.5rem;">
+                                    <div class="cost-info">
+                                        <span class="cost-label">Per 1K tokens (internal):</span>
+                                        <span class="cost-value" style="color: #166534;">$0.002</span>
+                        </div>
+                    </div>
+
+                                <!-- Usage Stats -->
+                                <div class="usage-stats-grid">
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">Total Cost</span>
+                                        <span class="usage-stat-value cost-positive" id="llama-3.1-cost">$0.00</span>
+                            </div>
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">API Keys</span>
+                                        <span class="usage-stat-value" id="llama-3.1-keys">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="model-card-actions">
+                                <!-- Actions -->
+                                <button class="btn btn-primary" onclick="createApiKey('llama-3.1', 'Llama-3.1')">Access Model</button>
+                                
+                                <!-- Platform Actions -->
+                                <div class="platform-actions platform-only hidden">
+                                    <button class="btn btn-secondary" onclick="toggleRecommended('llama-3.1')" style="width: 100%;">Set as Recommended</button>
+                                    <button class="btn btn-danger" onclick="removeProvider('llama-3.1', 'Llama-3.1')" style="width: 100%;">Remove</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Imagen 3 -->
+                    <div class="card model-card" data-provider="imagen-3" data-recommended="false">
+                        <div class="card-body">
+                            <div class="model-card-content">
+                                <!-- Header -->
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="provider-icon">🎨</span>
+                                        <div>
+                                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                                <h3>Imagen 3</h3>
+                                                <span class="recommended-badge platform-only hidden" style="display: none;" data-provider-badge="imagen-3">⭐ Recommended</span>
+                            </div>
+                                            <p class="text-sm text-gray">Google</p>
+                            </div>
+                        </div>
+                    </div>
+                                
+                                <!-- Summary -->
+                                <p class="model-summary">Text-to-image diffusion model generating photorealistic images with deep language understanding.</p>
+                                
+                                <!-- Use Cases -->
+                                <div class="model-detail-section" style="border-left-color: #eab308;">
+                                    <div class="model-detail-title" style="color: #854d0e;">BEST FOR</div>
+                                    <div class="model-detail-content" style="color: #854d0e;">
+                                        <ul>
+                                            <li>Marketing visuals</li>
+                                            <li>Product mockups</li>
+                                            <li>Creative design</li>
+                                        </ul>
+                </div>
+            </div>
+
+                                <!-- Pricing -->
+                                <div style="margin-top: 0.75rem; padding: 0.75rem; background: #fefce8; border-radius: 0.5rem;">
+                                    <div class="cost-info">
+                                        <span class="cost-label">Per image:</span>
+                                        <span class="cost-value" style="color: #854d0e;">$0.030</span>
+                    </div>
+                </div>
+
+                                <!-- Usage Stats -->
+                                <div class="usage-stats-grid">
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">Total Cost</span>
+                                        <span class="usage-stat-value cost-positive" id="imagen-3-cost">$0.00</span>
+                            </div>
+                                    <div class="usage-stat">
+                                        <span class="usage-stat-label">API Keys</span>
+                                        <span class="usage-stat-value" id="imagen-3-keys">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="model-card-actions">
+                                <!-- Actions -->
+                                <button class="btn btn-primary" onclick="createApiKey('imagen-3', 'Imagen 3')">Access Model</button>
+                                
+                                <!-- Platform Actions -->
+                                <div class="platform-actions platform-only hidden">
+                                    <button class="btn btn-secondary" onclick="toggleRecommended('imagen-3')" style="width: 100%;">Set as Recommended</button>
+                                    <button class="btn btn-danger" onclick="removeProvider('imagen-3', 'Imagen 3')" style="width: 100%;">Remove</button>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Active Model Access -->
+                    <div class="card">
+                    <div class="card-header">
+                        <h2>🤖 Your Model Access</h2>
+                            </div>
+                    <div id="apiKeysList">
+                        <div class="provider-item">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3>GPT-4 Production Access</h3>
+                                    <div class="text-sm text-gray mb-2">
+                                        <span>OpenAI GPT Models</span> • 
+                                        <span>Activated: Jan 15, 2024</span> • 
+                                        <span class="cost-positive">$247.85</span>
+                            </div>
+                                    <div class="api-key">Access Key: sk-...abc123</div>
+                        </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="status-active">active</span>
+                                    <button class="btn btn-danger" onclick="revokeKey(this)">Revoke</button>
+                    </div>
+                            </div>
+                        </div>
+                        
+                        <div class="provider-item">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3>Claude-3 Development Access</h3>
+                                    <div class="text-sm text-gray mb-2">
+                                        <span>Anthropic Claude Models</span> • 
+                                        <span>Activated: Feb 3, 2024</span> • 
+                                        <span class="cost-positive">$89.32</span>
+                            </div>
+                                    <div class="api-key">Access Key: sk-...def456</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="status-active">active</span>
+                                    <button class="btn btn-danger" onclick="revokeKey(this)">Revoke</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+
+            <!-- Unified Marketplace Page -->
+            <div id="marketplacePage" class="hidden">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="mb-2">Marketplace</h1>
+                        <p class="text-gray">Browse and download AI resources including contexts, MCP servers, and RAG configurations</p>
+                            </div>
+                    <button class="btn btn-primary" onclick="showAddItemForm()">+ Add New Item</button>
+                            </div>
+
+                <!-- Search and Filters -->
+                <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: nowrap;">
+                    <!-- Search Bar -->
+                    <input 
+                        type="text" 
+                        id="marketplaceSearch" 
+                        placeholder="🔍 Search marketplace items..." 
+                        onkeyup="filterMarketplace()"
+                        style="flex: 1; min-width: 250px; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem;"
+                    >
+                    
+                    <!-- Type Filter Dropdown -->
+                    <div class="custom-dropdown" id="typeDropdown">
+                        <button class="dropdown-button" onclick="toggleDropdown('typeDropdown')" type="button">
+                            <span id="typeDropdownLabel">Type (3)</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu" id="typeDropdownMenu">
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="type-Context" value="Context" onchange="updateTypeFilter()" checked>
+                                <label for="type-Context">Context</label>
+                            </div>
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="type-MCP" value="MCP" onchange="updateTypeFilter()" checked>
+                                <label for="type-MCP">MCP</label>
+                            </div>
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="type-RAG" value="RAG" onchange="updateTypeFilter()" checked>
+                                <label for="type-RAG">RAG</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Filter Dropdown -->
+                    <div class="custom-dropdown" id="categoryDropdown">
+                        <button class="dropdown-button" onclick="toggleDropdown('categoryDropdown')" type="button">
+                            <span id="categoryDropdownLabel">Category (4)</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu" id="categoryDropdownMenu">
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="category-Marketing" value="Marketing" onchange="updateCategoryFilter()" checked>
+                                <label for="category-Marketing">Marketing</label>
+                            </div>
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="category-Sales" value="Sales" onchange="updateCategoryFilter()" checked>
+                                <label for="category-Sales">Sales</label>
+                            </div>
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="category-Product" value="Product" onchange="updateCategoryFilter()" checked>
+                                <label for="category-Product">Product</label>
+                            </div>
+                            <div class="dropdown-item" onclick="event.stopPropagation()">
+                                <input type="checkbox" id="category-Engineering" value="Engineering" onchange="updateCategoryFilter()" checked>
+                                <label for="category-Engineering">Engineering</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="grid grid-3" id="marketplaceGrid">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+
+
+            <!-- Governance Page -->
+            <div id="governancePage" class="hidden">
+                <h1 class="mb-2">AI Observability & Governance</h1>
+                <p class="text-gray mb-8">Monitor AI model performance, usage patterns, and operational health across your platform</p>
+
+                <!-- Key Metrics Dashboard -->
+                <div class="grid grid-3 mb-8">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="text-2xl font-bold mb-2" id="totalUsers">3</h3>
+                            <p class="text-gray">Active Users</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="text-2xl font-bold mb-2" id="totalApiKeys">2</h3>
+                            <p class="text-gray">Model Endpoints</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="text-2xl font-bold cost-positive mb-2" id="totalCost">$337.17</h3>
+                            <p class="text-gray">Monthly Spend</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Performance Metrics -->
+                <div class="grid grid-3 mb-8">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="text-2xl font-bold text-green-600 mb-2">2.3s</h3>
+                            <p class="text-gray">Avg Response Time</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">99.2%</h3>
+                            <p class="text-gray">Success Rate</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="text-2xl font-bold text-purple-600 mb-2">1,247</h3>
+                            <p class="text-gray">Requests/Hour</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Model Health & Quality -->
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>🎯 Model Quality Metrics</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>GPT-4 Relevance Score</span>
+                                    <span class="font-bold text-green-600">94.2%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 94.2%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Claude-3 Safety Score</span>
+                                    <span class="font-bold text-green-600">98.7%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 98.7%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Avg Token Efficiency</span>
+                                    <span class="font-bold text-blue-600">87.3%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 87.3%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>⚡ Performance Trends</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Response Time (24h)</span>
+                                    <span class="font-bold text-green-600">↓ 12%</span>
+                                </div>
+                                <div class="text-sm text-gray-600">2.3s avg (was 2.6s)</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Error Rate (7d)</span>
+                                    <span class="font-bold text-red-600">↑ 0.3%</span>
+                                </div>
+                                <div class="text-sm text-gray-600">0.8% (was 0.5%)</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Cost per Request</span>
+                                    <span class="font-bold text-green-600">↓ 8%</span>
+                                </div>
+                                <div class="text-sm text-gray-600">$0.023 (was $0.025)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage Patterns & Anomalies -->
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>📊 Usage Patterns</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Peak Usage Hours</span>
+                                    <span class="font-medium">9 AM - 5 PM</span>
+                                </div>
+                                <div class="text-sm text-gray-600">2.3x higher than off-hours</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Most Used Model</span>
+                                    <span class="font-medium">GPT-4 (67%)</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Claude-3: 28%, Ollama: 5%</div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span>Avg Context Length</span>
+                                    <span class="font-medium">2,847 tokens</span>
+                                </div>
+                                <div class="text-sm text-gray-600">15% longer than last month</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>🚨 Alerts & Anomalies</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4 p-3 bg-yellow-50 rounded border-l-4 border-yellow-400">
+                                <div class="font-medium text-yellow-800">Rate Limit Warning</div>
+                                <div class="text-sm text-yellow-700">OpenAI: 85% of daily quota used</div>
+                                <div class="text-xs text-yellow-600">2 hours ago</div>
+                            </div>
+                            <div class="mb-4 p-3 bg-red-50 rounded border-l-4 border-red-400">
+                                <div class="font-medium text-red-800">High Error Rate</div>
+                                <div class="text-sm text-red-700">Claude-3: 3.2% errors in last hour</div>
+                                <div class="text-xs text-red-600">23 minutes ago</div>
+                            </div>
+                            <div class="mb-4 p-3 bg-blue-50 rounded border-l-4 border-blue-400">
+                                <div class="font-medium text-blue-800">Unusual Pattern</div>
+                                <div class="text-sm text-blue-700">john.doe: 300% increase in usage</div>
+                                <div class="text-xs text-blue-600">1 hour ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Analytics -->
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>📊 Cost per User</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="costPerUser">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>john.doe</span>
+                                    <span class="cost-positive font-medium">$247.85</span>
+                                </div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>sarah.wilson</span>
+                                    <span class="cost-positive font-medium">$89.32</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>alex.chen</span>
+                                    <span class="cost-positive font-medium">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>🔑 Cost per Provider</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="costPerProvider">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>🤖 OpenAI ChatGPT</span>
+                                    <span class="cost-positive font-medium">$247.85</span>
+                                </div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span>🧠 Anthropic Claude</span>
+                                    <span class="cost-positive font-medium">$89.32</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>🏠 Self Hosted Ollama</span>
+                                    <span class="cost-positive font-medium">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Model Requests Management -->
+                <div class="card mb-8">
+                    <div class="card-header">
+                        <h2>🙋 Model Requests</h2>
+                    </div>
+                    <div id="modelRequestsList">
+                        <div class="provider-item">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3>GPT-4 Vision Request</h3>
+                                    <div class="text-sm text-gray mb-2">
+                                        <span class="font-medium">Requested by: sarah.wilson</span> • 
+                                        <span>Provider: OpenAI</span> • 
+                                        <span>Use Case: Image Analysis</span> • 
+                                        <span class="font-medium text-orange-600">Priority: High</span>
+                                    </div>
+                                    <div class="text-sm text-gray mb-2">
+                                        <strong>Justification:</strong> Need to analyze user-uploaded images for content moderation and automated tagging in our new feature release.
+                                    </div>
+                                    <div class="text-xs text-gray">Submitted: 2 hours ago</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">pending</span>
+                                    <button class="btn btn-secondary" onclick="approveModelRequest(this, 'GPT-4 Vision')">Approve</button>
+                                    <button class="btn btn-danger" onclick="rejectModelRequest(this, 'GPT-4 Vision')">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="provider-item">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3>Gemini Pro Request</h3>
+                                    <div class="text-sm text-gray mb-2">
+                                        <span class="font-medium">Requested by: john.doe</span> • 
+                                        <span>Provider: Google</span> • 
+                                        <span>Use Case: Code Generation</span> • 
+                                        <span class="font-medium text-blue-600">Priority: Medium</span>
+                                    </div>
+                                    <div class="text-sm text-gray mb-2">
+                                        <strong>Justification:</strong> Evaluate Google's latest model for code generation tasks to compare performance with current GPT-4 implementation.
+                                    </div>
+                                    <div class="text-xs text-gray">Submitted: 1 day ago</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">approved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All API Keys Management -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔐 All Model Access</h2>
+                    </div>
+                    <div id="allApiKeysList">
+                        <div class="provider-item">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3>Production GPT-4 Key</h3>
+                                    <div class="text-sm text-gray mb-2">
+                                        <span class="font-medium">Owner: john.doe</span> • 
+                                        <span>OpenAI ChatGPT</span> • 
+                                        <span>Created: Jan 15, 2024</span> • 
+                                        <span class="cost-positive">$247.85</span>
+                                    </div>
+                                    <div class="api-key">sk-...abc123</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="status-active">active</span>
+                                    <button class="btn btn-danger" onclick="revokeAnyKey(this, 'john.doe')">Revoke</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="provider-item">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3>Dev Claude Key</h3>
+                                    <div class="text-sm text-gray mb-2">
+                                        <span class="font-medium">Owner: sarah.wilson</span> • 
+                                        <span>Anthropic Claude</span> • 
+                                        <span>Created: Feb 3, 2024</span> • 
+                                        <span class="cost-positive">$89.32</span>
+                                    </div>
+                                    <div class="api-key">sk-...def456</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="status-active">active</span>
+                                    <button class="btn btn-danger" onclick="revokeAnyKey(this, 'sarah.wilson')">Revoke</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div id="addItemModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+        <div class="card" style="width: 100%; max-width: 500px; margin: 1rem;">
+            <div class="card-header">
+                <h2>Add New Marketplace Item</h2>
+            </div>
+            <div class="card-body">
+                <form id="addItemForm">
+                    <div class="form-group">
+                        <label for="itemType" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Type</label>
+                        <select id="itemType" required>
+                            <option value="">Select a type</option>
+                            <option value="Context">Context</option>
+                            <option value="MCP">MCP</option>
+                            <option value="RAG">RAG</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemName" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Name</label>
+                        <input type="text" id="itemName" placeholder="e.g., Email Response Assistant" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDescription" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+                        <input type="text" id="itemDescription" placeholder="Brief description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Category</label>
+                        <select id="itemCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Product">Product</option>
+                            <option value="Engineering">Engineering</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-between" style="gap: 1rem; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary" onclick="hideAddItemForm()" style="flex: 1;">Cancel</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Add Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Provider Modal -->
+    <div id="addProviderModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+        <div class="card" style="width: 100%; max-width: 500px; margin: 1rem;">
+            <div class="card-header">
+                <h2>Add New API Provider</h2>
+            </div>
+            <div class="card-body">
+                <form id="addProviderForm">
+                    <div class="form-group">
+                        <label for="providerName" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Provider Name</label>
+                        <input type="text" id="providerName" placeholder="e.g., Google Gemini" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="providerDescription" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description</label>
+                        <input type="text" id="providerDescription" placeholder="Brief description of the provider" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="providerIcon" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Icon (Emoji)</label>
+                        <input type="text" id="providerIcon" placeholder="🤖" maxlength="2" required>
+                    </div>
+                    <div class="flex justify-between" style="gap: 1rem; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary" onclick="hideAddProviderForm()" style="flex: 1;">Cancel</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Add Provider</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Model Request Modal -->
+    <div id="modelRequestModal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+        <div class="card" style="width: 100%; max-width: 500px; margin: 1rem;">
+            <div class="card-header">
+                <h2>Request New Model</h2>
+            </div>
+            <div class="card-body">
+                <form id="modelRequestForm">
+                    <div class="form-group">
+                        <label for="requestedModel" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Model Name</label>
+                        <input type="text" id="requestedModel" placeholder="e.g., GPT-4 Vision, Gemini Pro, Llama-3.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestProvider" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Provider</label>
+                        <select id="requestProvider" required>
+                            <option value="">Select a provider</option>
+                            <option value="OpenAI">OpenAI</option>
+                            <option value="Anthropic">Anthropic</option>
+                            <option value="Google">Google</option>
+                            <option value="Meta">Meta</option>
+                            <option value="Mistral">Mistral</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestUseCase" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Use Case</label>
+                        <select id="requestUseCase" required>
+                            <option value="">Select primary use case</option>
+                            <option value="Text Generation">Text Generation</option>
+                            <option value="Code Generation">Code Generation</option>
+                            <option value="Image Analysis">Image Analysis</option>
+                            <option value="Data Analysis">Data Analysis</option>
+                            <option value="Translation">Translation</option>
+                            <option value="Customer Support">Customer Support</option>
+                            <option value="Content Moderation">Content Moderation</option>
+                            <option value="Research">Research</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestJustification" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Business Justification</label>
+                        <textarea id="requestJustification" rows="4" placeholder="Explain why this model is needed, expected benefits, and impact on your project..." required style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; resize: vertical; font-family: inherit;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestPriority" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Priority</label>
+                        <select id="requestPriority" required>
+                            <option value="">Select priority</option>
+                            <option value="Low">Low - Nice to have</option>
+                            <option value="Medium">Medium - Important for roadmap</option>
+                            <option value="High">High - Blocking current work</option>
+                            <option value="Critical">Critical - Production issue</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-between" style="gap: 1rem; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary" onclick="hideModelRequestForm()" style="flex: 1;">Cancel</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let currentFilter = 'all';
+        let currentTypeFilter = 'all';
+        let currentCategoryFilter = 'all';
+        let currentSearchTerm = '';
+        
+        // Marketplace data
+        const marketplaceItems = [
+            // Context items
+            { name: 'Customer Support Templates', description: 'Pre-built templates for common customer support scenarios', type: 'Context', category: 'Marketing', author: 'External' },
+            { name: 'Code Review Assistant', description: 'AI context for automated code review and suggestions', type: 'Context', category: 'Engineering', author: 'john.doe' },
+            { name: 'Product Requirements Template', description: 'Standardized template for writing product requirements', type: 'Context', category: 'Product', author: 'External' },
+            { name: 'Sales Pitch Generator', description: 'Generate compelling sales pitches for different customer segments', type: 'Context', category: 'Sales', author: 'sarah.wilson' },
+            { name: 'API Documentation Writer', description: 'Automated documentation generation for APIs and services', type: 'Context', category: 'Engineering', author: 'External' },
+            { name: 'Marketing Copy Generator', description: 'AI context for creating compelling marketing content', type: 'Context', category: 'Marketing', author: 'alex.chen' },
+            
+            // MCP items
+            { name: 'Database Query MCP', description: 'Connect to SQL databases and execute queries through natural language', type: 'MCP', category: 'Engineering', author: 'External' },
+            { name: 'File System MCP', description: 'Read, write, and manage files and directories safely', type: 'MCP', category: 'Engineering', author: 'john.doe' },
+            { name: 'Slack Integration MCP', description: 'Send messages, read channels, and manage Slack workspaces', type: 'MCP', category: 'Product', author: 'External' },
+            { name: 'Web Scraper MCP', description: 'Extract data from websites and APIs with intelligent parsing', type: 'MCP', category: 'Marketing', author: 'sarah.wilson' },
+            { name: 'Email Automation MCP', description: 'Send emails, manage contacts, and automate email workflows', type: 'MCP', category: 'Sales', author: 'External' },
+            { name: 'GitHub Integration MCP', description: 'Manage repositories, issues, pull requests, and code reviews', type: 'MCP', category: 'Engineering', author: 'alex.chen' },
+            
+            // RAG items
+            { name: 'Company Knowledge Base RAG', description: 'Semantic search over company documentation and internal knowledge', type: 'RAG', category: 'Product', author: 'External' },
+            { name: 'Customer Data RAG', description: 'Query customer interactions, feedback, and support tickets', type: 'RAG', category: 'Sales', author: 'john.doe' },
+            { name: 'Code Repository RAG', description: 'Search and retrieve relevant code snippets from your codebase', type: 'RAG', category: 'Engineering', author: 'External' },
+            { name: 'Legal Document RAG', description: 'Query contracts, policies, and legal documents with context', type: 'RAG', category: 'Product', author: 'sarah.wilson' },
+            { name: 'Marketing Content RAG', description: 'Search through marketing materials, campaigns, and brand guidelines', type: 'RAG', category: 'Marketing', author: 'alex.chen' },
+            { name: 'Product Documentation RAG', description: 'Retrieve product specs, user guides, and technical documentation', type: 'RAG', category: 'Product', author: 'External' }
+        ];
+
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('role').value;
+            
+            if (email) {
+                currentUser = {
+                    name: email.split('@')[0],
+                    email: email,
+                    role: role
+                };
+                
+                showMainApp();
+            }
+        });
+
+        function showMainApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            
+            // Update user info
+            document.getElementById('userName').textContent = currentUser.name;
+            const roleElement = document.getElementById('userRole');
+            roleElement.textContent = currentUser.role === 'platform' ? 'Platform Team' : 'App Team';
+            roleElement.className = 'user-badge ' + (currentUser.role === 'platform' ? 'platform-badge' : 'app-badge');
+            
+            // Show role-specific features
+            if (currentUser.role === 'platform') {
+                document.getElementById('platformOnlyButtons').classList.remove('hidden');
+                document.querySelectorAll('.platform-only').forEach(element => {
+                    element.classList.remove('hidden');
+                });
+            } else if (currentUser.role === 'app') {
+                document.getElementById('appTeamButtons').classList.remove('hidden');
+            }
+            
+            // Load marketplace items
+            loadMarketplaceItems();
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('loginForm').reset();
+            
+            // Hide role-specific features
+            document.getElementById('platformOnlyButtons').classList.add('hidden');
+            document.getElementById('appTeamButtons').classList.add('hidden');
+            document.querySelectorAll('.platform-only').forEach(element => {
+                element.classList.add('hidden');
+            });
+        }
+
+        function showPage(page) {
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show/hide pages
+            document.getElementById('apiKeysPage').classList.toggle('hidden', page !== 'api-keys');
+            document.getElementById('marketplacePage').classList.toggle('hidden', page !== 'marketplace');
+            document.getElementById('governancePage').classList.toggle('hidden', page !== 'governance');
+        }
+
+        function createApiKey(provider, providerName) {
+            const keyName = prompt(`Enter a name for your ${providerName} access:`, `${providerName} Access`);
+            if (!keyName) return;
+            
+            const randomKey = 'sk-...' + Math.random().toString(36).substr(2, 6);
+            const today = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+            
+            const keyItem = document.createElement('div');
+            keyItem.className = 'provider-item';
+            keyItem.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3>${keyName}</h3>
+                        <div class="text-sm text-gray mb-2">
+                            <span>${providerName}</span> • 
+                            <span>Created: ${today}</span> • 
+                            <span class="cost-positive">$0.00</span>
+                        </div>
+                        <div class="api-key">${randomKey}</div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <span class="status-active">active</span>
+                        <button class="btn btn-danger" onclick="revokeKey(this)">Revoke</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('apiKeysList').appendChild(keyItem);
+            
+            // Update count
+            const countElement = document.getElementById(provider + '-count');
+            countElement.textContent = parseInt(countElement.textContent) + 1;
+            
+            alert(`Model access "${keyName}" activated successfully!`);
+        }
+
+        function revokeKey(button) {
+            if (confirm('Are you sure you want to revoke this model access?')) {
+                const keyItem = button.closest('.provider-item');
+                const statusElement = keyItem.querySelector('.status-active');
+                if (statusElement) {
+                    statusElement.textContent = 'revoked';
+                    statusElement.className = 'status-revoked';
+                }
+                button.style.display = 'none';
+                alert('Model access revoked successfully!');
+            }
+        }
+
+        // Marketplace Functions
+        function loadMarketplaceItems() {
+            filterMarketplace();
+        }
+        
+        function filterMarketplace() {
+            const grid = document.getElementById('marketplaceGrid');
+            const searchInput = document.getElementById('marketplaceSearch');
+            
+            currentSearchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            
+            // Get selected types from checkboxes
+            const selectedTypes = [];
+            document.querySelectorAll('#typeDropdownMenu input[type="checkbox"]:checked').forEach(cb => {
+                selectedTypes.push(cb.value);
+            });
+            
+            // Get selected categories from checkboxes
+            const selectedCategories = [];
+            document.querySelectorAll('#categoryDropdownMenu input[type="checkbox"]:checked').forEach(cb => {
+                selectedCategories.push(cb.value);
+            });
+            
+            grid.innerHTML = '';
+            
+            // Apply all filters
+            const filteredItems = marketplaceItems.filter(item => {
+                // Type filter - if nothing selected, show all
+                const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(item.type);
+                
+                // Category filter - if nothing selected, show all
+                const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(item.category);
+                
+                // Search filter
+                const searchMatch = currentSearchTerm === '' || 
+                    item.name.toLowerCase().includes(currentSearchTerm) ||
+                    item.description.toLowerCase().includes(currentSearchTerm);
+                
+                return typeMatch && categoryMatch && searchMatch;
+            });
+            
+            if (filteredItems.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #6b7280;"><p style="font-size: 1.125rem; margin-bottom: 0.5rem;">No items found</p><p>Try adjusting your filters or search term</p></div>';
+            } else {
+                filteredItems.forEach(item => {
+                    const card = createMarketplaceCard(item);
+                    grid.appendChild(card);
+                });
+            }
+        }
+        
+        // Dropdown functions
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const menu = dropdown.querySelector('.dropdown-menu');
+            const arrow = dropdown.querySelector('.dropdown-arrow');
+            const button = dropdown.querySelector('.dropdown-button');
+            
+            // Close other dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                if (m !== menu) {
+                    m.classList.remove('open');
+                }
+            });
+            document.querySelectorAll('.dropdown-arrow').forEach(a => {
+                if (a !== arrow) {
+                    a.classList.remove('open');
+                }
+            });
+            document.querySelectorAll('.dropdown-button').forEach(b => {
+                if (b !== button) {
+                    b.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            menu.classList.toggle('open');
+            arrow.classList.toggle('open');
+            button.classList.toggle('active');
+        }
+        
+        function updateTypeFilter() {
+            const selectedTypes = [];
+            document.querySelectorAll('#typeDropdownMenu input[type="checkbox"]:checked').forEach(cb => {
+                selectedTypes.push(cb.value);
+            });
+            
+            // Update label
+            const label = document.getElementById('typeDropdownLabel');
+            if (selectedTypes.length === 0) {
+                label.textContent = 'Type';
+            } else if (selectedTypes.length === 1) {
+                label.textContent = selectedTypes[0];
+            } else {
+                label.textContent = `Type (${selectedTypes.length})`;
+            }
+            
+            filterMarketplace();
+        }
+        
+        function updateCategoryFilter() {
+            const selectedCategories = [];
+            document.querySelectorAll('#categoryDropdownMenu input[type="checkbox"]:checked').forEach(cb => {
+                selectedCategories.push(cb.value);
+            });
+            
+            // Update label
+            const label = document.getElementById('categoryDropdownLabel');
+            if (selectedCategories.length === 0) {
+                label.textContent = 'Category';
+            } else if (selectedCategories.length === 1) {
+                label.textContent = selectedCategories[0];
+            } else {
+                label.textContent = `Category (${selectedCategories.length})`;
+            }
+            
+            filterMarketplace();
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.custom-dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('open');
+                });
+                document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
+                    arrow.classList.remove('open');
+                });
+                document.querySelectorAll('.dropdown-button').forEach(button => {
+                    button.classList.remove('active');
+                });
+            }
+        });
+        
+        function createMarketplaceCard(item) {
+            const card = document.createElement('div');
+            card.className = 'card marketplace-card';
+            card.setAttribute('data-type', item.type);
+            card.innerHTML = `
+                <div class="card-body">
+                    <div class="marketplace-card-content">
+                        <div class="mb-2" style="display: flex; justify-content: space-between; align-items: start; gap: 0.5rem;">
+                            <h3 class="mb-2" style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.name}</h3>
+                            <span class="px-2 py-1 text-xs rounded-full bg-purple-50 text-purple-700" style="font-weight: 600; white-space: nowrap;">${item.type}</span>
+                    </div>
+                        <p class="text-sm text-gray mb-4" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${item.description}</p>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="context-category">${item.category}</span>
+                            <span class="text-sm text-gray" style="white-space: nowrap;">By: ${item.author}</span>
+                        </div>
+                    </div>
+                    <div class="marketplace-card-actions">
+                        <button class="btn btn-primary" onclick="downloadItem('${item.name}', '${item.type}')" style="width: 100%;">Download</button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+        
+        
+        function downloadItem(itemName, itemType) {
+            alert(`${itemType} "${itemName}" downloaded successfully!\n\nYou can now use this in your AI applications.`);
+        }
+
+        function showAddItemForm() {
+            document.getElementById('addItemModal').classList.remove('hidden');
+        }
+
+        function hideAddItemForm() {
+            document.getElementById('addItemModal').classList.add('hidden');
+            document.getElementById('addItemForm').reset();
+        }
+        
+        function showModelRequestForm() {
+            document.getElementById('modelRequestModal').classList.remove('hidden');
+        }
+        
+        function hideModelRequestForm() {
+            document.getElementById('modelRequestModal').classList.add('hidden');
+            document.getElementById('modelRequestForm').reset();
+        }
+        
+        // Handle model request form submission
+        document.getElementById('modelRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const modelName = document.getElementById('requestedModel').value;
+            const provider = document.getElementById('requestProvider').value;
+            const useCase = document.getElementById('requestUseCase').value;
+            const justification = document.getElementById('requestJustification').value;
+            const priority = document.getElementById('requestPriority').value;
+            
+            if (modelName && provider && useCase && justification && priority) {
+                hideModelRequestForm();
+                alert(`Model request submitted successfully!\n\nModel: ${modelName}\nProvider: ${provider}\nPriority: ${priority}\n\nPlatform team will review your request.`);
+            }
+        });
+        
+        // Close model request modal when clicking outside
+        document.getElementById('modelRequestModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideModelRequestForm();
+            }
+        });
+
+        // Handle add item form submission
+        document.getElementById('addItemForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const type = document.getElementById('itemType').value;
+            const name = document.getElementById('itemName').value;
+            const description = document.getElementById('itemDescription').value;
+            const category = document.getElementById('itemCategory').value;
+            
+            if (type && name && description && category) {
+                const newItem = {
+                    name: name,
+                    description: description,
+                    type: type,
+                    category: category,
+                    author: currentUser.name
+                };
+                marketplaceItems.push(newItem);
+                loadMarketplaceItems();
+                hideAddItemForm();
+                alert(`${type} "${name}" added successfully!`);
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('addItemModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideAddItemForm();
+            }
+        });
+
+        // Provider Management Functions
+        function showAddProviderForm() {
+            document.getElementById('addProviderModal').classList.remove('hidden');
+        }
+
+        function hideAddProviderForm() {
+            document.getElementById('addProviderModal').classList.add('hidden');
+            document.getElementById('addProviderForm').reset();
+        }
+
+        // Handle add provider form submission
+        document.getElementById('addProviderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('providerName').value;
+            const description = document.getElementById('providerDescription').value;
+            const icon = document.getElementById('providerIcon').value;
+            
+            if (name && description && icon) {
+                addNewProvider(name, description, icon);
+                hideAddProviderForm();
+                alert(`Provider "${name}" added successfully!`);
+            }
+        });
+
+        function addNewProvider(name, description, icon) {
+            const providerGrid = document.getElementById('providerGrid');
+            const providerId = name.toLowerCase().replace(/\s+/g, '-');
+            
+            const newProviderCard = document.createElement('div');
+            newProviderCard.className = 'card';
+            newProviderCard.setAttribute('data-provider', providerId);
+            newProviderCard.innerHTML = `
+                <div class="card-body">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <span class="provider-icon">${icon}</span>
+                            <div>
+                                <h3>${name}</h3>
+                                <p class="text-sm text-gray">${description}</p>
+                                <div class="mt-2 p-2 bg-blue-50 rounded text-xs text-gray-600">
+                                    <strong>Best for:</strong> Custom use cases - check with provider for specific recommendations
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger platform-only ${currentUser.role === 'platform' ? '' : 'hidden'}" onclick="removeProvider('${providerId}', '${name}')" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Remove</button>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="text-gray">Active Keys:</span>
+                            <span id="${providerId}-count">0</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray">Total Cost:</span>
+                            <span class="cost-positive" id="${providerId}-cost">$0.00</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="createApiKey('${providerId}', '${name}')">Create API Key</button>
+                </div>
+            `;
+            
+            providerGrid.appendChild(newProviderCard);
+        }
+
+        function removeProvider(providerId, providerName) {
+            if (confirm(`Are you sure you want to remove "${providerName}" provider?\n\nThis will also remove all associated API keys.`)) {
+                // Remove the provider card
+                const providerCard = document.querySelector(`[data-provider="${providerId}"]`);
+                if (providerCard) {
+                    providerCard.remove();
+                }
+                
+                // Remove associated API keys from the list
+                const apiKeysList = document.getElementById('apiKeysList');
+                const apiKeyItems = apiKeysList.querySelectorAll('.provider-item');
+                apiKeyItems.forEach(item => {
+                    const keyText = item.textContent;
+                    if (keyText.includes(providerName)) {
+                        item.remove();
+                    }
+                });
+                
+                alert(`Provider "${providerName}" removed successfully!`);
+            }
+        }
+        
+        function toggleRecommended(providerId) {
+            // Get all provider cards
+            const allCards = document.querySelectorAll('[data-provider]');
+            
+            // Remove recommended from all providers
+            allCards.forEach(card => {
+                card.setAttribute('data-recommended', 'false');
+                const badge = card.querySelector(`[data-provider-badge]`);
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+            });
+            
+            // Set this provider as recommended
+            const currentCard = document.querySelector(`[data-provider="${providerId}"]`);
+            if (currentCard) {
+                currentCard.setAttribute('data-recommended', 'true');
+                const badge = currentCard.querySelector(`[data-provider-badge="${providerId}"]`);
+                if (badge) {
+                    badge.style.display = 'inline-flex';
+                    // Remove platform-only class so it shows for all users
+                    badge.classList.remove('hidden');
+                }
+            }
+            
+            alert(`"${providerId}" has been set as the recommended model!`);
+        }
+
+        // Close provider modal when clicking outside
+        document.getElementById('addProviderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideAddProviderForm();
+            }
+        });
+
+        // Governance Functions
+        function revokeAnyKey(button, keyOwner) {
+            if (confirm(`Are you sure you want to revoke this API key belonging to ${keyOwner}?\n\nThis action cannot be undone.`)) {
+                const keyItem = button.closest('.provider-item');
+                const statusElement = keyItem.querySelector('.status-active');
+                if (statusElement) {
+                    statusElement.textContent = 'revoked';
+                    statusElement.className = 'status-revoked';
+                }
+                button.style.display = 'none';
+                
+                // Update analytics
+                updateGovernanceAnalytics();
+                
+                alert(`API key revoked successfully!\n\nThe key owner (${keyOwner}) has been notified.`);
+            }
+        }
+
+        function approveModelRequest(button, modelName) {
+            if (confirm(`Approve model request for "${modelName}"?`)) {
+                const requestItem = button.closest('.provider-item');
+                const statusBadge = requestItem.querySelector('.px-2');
+                statusBadge.textContent = 'approved';
+                statusBadge.className = 'px-2 py-1 text-xs rounded-full bg-green-100 text-green-800';
+                
+                // Hide approve/reject buttons
+                requestItem.querySelectorAll('button').forEach(btn => btn.style.display = 'none');
+                
+                alert(`Model request for "${modelName}" has been approved!\n\nThe requester will be notified.`);
+            }
+        }
+        
+        function rejectModelRequest(button, modelName) {
+            const reason = prompt(`Please provide a reason for rejecting the "${modelName}" request:`, '');
+            if (reason !== null && reason.trim() !== '') {
+                const requestItem = button.closest('.provider-item');
+                const statusBadge = requestItem.querySelector('.px-2');
+                statusBadge.textContent = 'rejected';
+                statusBadge.className = 'px-2 py-1 text-xs rounded-full bg-red-100 text-red-800';
+                
+                // Hide approve/reject buttons
+                requestItem.querySelectorAll('button').forEach(btn => btn.style.display = 'none');
+                
+                alert(`Model request for "${modelName}" has been rejected.\n\nReason: ${reason}\n\nThe requester will be notified.`);
+            }
+        }
+        
+        function updateGovernanceAnalytics() {
+            // Recalculate active keys
+            const allKeysList = document.getElementById('allApiKeysList');
+            const activeKeys = allKeysList.querySelectorAll('.status-active').length;
+            document.getElementById('totalApiKeys').textContent = activeKeys;
+            
+            // This would normally recalculate costs, but for demo we keep them static
+        }
+
+    </script>
+</body>
+</html>
