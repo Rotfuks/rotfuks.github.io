@@ -1128,38 +1128,6 @@
         </div>
     </section>
 
-    <!-- Social Proof -->
-    <section class="proof-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Proven at Scale—Real Customer Outcomes</h2>
-            </div>
-            <div class="proof-stats">
-                <div class="proof-stat">
-                    <div class="proof-number">€1.44M</div>
-                    <div class="proof-label">Customer Savings</div>
-                    <div class="proof-detail">Replaced €1.5M commercial security quote with €60K platform</div>
-                </div>
-                <div class="proof-stat">
-                    <div class="proof-number">30-40%</div>
-                    <div class="proof-label">Cloud Cost Reduction</div>
-                    <div class="proof-detail">Retail customer using integrated cost optimization</div>
-                </div>
-                <div class="proof-stat">
-                    <div class="proof-number">90%</div>
-                    <div class="proof-label">Vulnerability Reduction</div>
-                    <div class="proof-detail">Achieved in under 1 year with integrated security</div>
-                </div>
-            </div>
-            <div class="customer-quote">
-                <div class="quote-text">
-                    "We went from 10 engineers on platform operations to 3, redirecting €800K in capacity to building competitive advantages instead of fighting infrastructure."
-                </div>
-                <div class="quote-author">— VP Engineering, Enterprise Customer</div>
-            </div>
-        </div>
-    </section>
-
     <!-- Delivery Models -->
     <section>
         <div class="container">
@@ -1206,6 +1174,131 @@
         </div>
     </section>
 
+    <!-- Social Proof -->
+    <section class="proof-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Proven at Scale—Real Customer Outcomes</h2>
+            </div>
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <div class="proof-number">€1.44M</div>
+                    <div class="proof-label">Customer Savings</div>
+                    <div class="proof-detail">Replaced €1.5M commercial security quote with €60K platform</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number">30-40%</div>
+                    <div class="proof-label">Cloud Cost Reduction</div>
+                    <div class="proof-detail">Retail customer using integrated cost optimization</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number">90%</div>
+                    <div class="proof-label">Vulnerability Reduction</div>
+                    <div class="proof-detail">Achieved in under 1 year with integrated security</div>
+                </div>
+            </div>
+            <div class="customer-quote">
+                <div class="quote-text">
+                    "We went from 10 engineers on platform operations to 3, redirecting €800K in capacity to building competitive advantages instead of fighting infrastructure."
+                </div>
+                <div class="quote-author">— VP Engineering, Enterprise Customer</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section style="background: linear-gradient(135deg, #f8f9fa 0%, #e8f4ff 100%); padding: 50px 0;">
+        <div class="container">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 1.75rem; font-weight: 700; color: var(--gs-blue); margin-bottom: 10px; text-align: center;">Calculate Your Savings</h2>
+                <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 30px; text-align: center;">
+                    Select capabilities to see your personalized ROI
+                </p>
+
+                <div style="background: var(--white); border-radius: 12px; padding: 35px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);">
+                    
+                    <!-- Sliders -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                        <div>
+                            <label style="display: block; font-size: 0.95rem; font-weight: 600; color: var(--gs-blue); margin-bottom: 12px;">
+                                Cluster Count
+                            </label>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <input type="range" id="clusters" min="5" max="100" value="20" style="flex: 1; accent-color: var(--gs-orange);" oninput="autoUpdateTeamSize()">
+                                <span id="clusters-value" style="font-size: 1.5rem; font-weight: 700; color: var(--gs-vivid-blue); min-width: 45px;">20</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 0.95rem; font-weight: 600; color: var(--gs-blue); margin-bottom: 12px;">
+                                Team Size
+                            </label>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <input type="range" id="team" min="3" max="25" value="10" style="flex: 1; accent-color: var(--gs-vivid-blue);" oninput="manualTeamAdjust()">
+                                <span id="team-value" style="font-size: 1.5rem; font-weight: 700; color: var(--gs-vivid-blue); min-width: 45px;">10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capabilities Checkboxes - Compact -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-size: 0.95rem; font-weight: 600; color: var(--gs-blue); margin-bottom: 12px; text-align: center;">
+                            Select Capabilities
+                        </label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                                <input type="checkbox" id="cap-k8s" checked onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
+                                <span style="font-weight: 500;">Kubernetes</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                                <input type="checkbox" id="cap-obs" checked onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
+                                <span style="font-weight: 500;">Observability</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                                <input type="checkbox" id="cap-sec" checked onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
+                                <span style="font-weight: 500;">Security</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                                <input type="checkbox" id="cap-net" onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
+                                <span style="font-weight: 500;">Connectivity</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                                <input type="checkbox" id="cap-ai" onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
+                                <span style="font-weight: 500;">AI Platform</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
+                                <input type="checkbox" id="cap-edge" onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
+                                <span style="font-weight: 500;">Edge/IIoT</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Results - Compact -->
+                    <div style="background: linear-gradient(135deg, var(--gs-blue) 0%, var(--gs-electric-blue) 100%); border-radius: 10px; padding: 30px;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 20px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 5px;">DIY Cost</div>
+                                <div id="diy-cost" style="font-size: 1.75rem; font-weight: 700; color: var(--white);">€1.1M</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 5px;">Giant Swarm</div>
+                                <div id="gs-cost" style="font-size: 1.75rem; font-weight: 700; color: var(--white);">€660K</div>
+                            </div>
+                            <div style="text-align: center; background: var(--gs-orange); border-radius: 6px; padding: 8px;">
+                                <div style="font-size: 0.75rem; color: var(--white); margin-bottom: 5px; font-weight: 600;">You Save</div>
+                                <div id="savings" style="font-size: 1.75rem; font-weight: 700; color: var(--white);">€440K</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.95);">
+                                <strong>Plus:</strong> <span id="engineers-freed" style="color: var(--gs-orange); font-weight: 700;">6 engineers</span> redirected + <strong>6-12 months</strong> faster
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Final CTA -->
     <section id="demo" class="final-cta">
         <div class="container">
@@ -1227,7 +1320,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Tabs -->
+    <!-- JavaScript for Tabs and Calculator -->
     <script>
         // Tab functionality
         const tabs = document.querySelectorAll('.tab');
@@ -1250,6 +1343,117 @@
                     targetContent.classList.add('active');
                 }
             });
+        });
+
+        // Auto-update team size based on capabilities and cluster count
+        function autoUpdateTeamSize() {
+            // FTE estimates per capability (from your product data)
+            const ftePerCap = {
+                'cap-k8s': 3,      // Kubernetes: 3 FTE base
+                'cap-obs': 3,      // Observability: 3 FTE
+                'cap-sec': 2.5,    // Security: 2-3 FTE
+                'cap-net': 2.5,    // Connectivity: 2-3 FTE
+                'cap-ai': 4,       // AI: 3-5 FTE
+                'cap-edge': 2      // Edge: 2 FTE
+            };
+            
+            // Base FTE for selected capabilities
+            let baseFTE = 0;
+            Object.keys(ftePerCap).forEach(capId => {
+                const checkbox = document.getElementById(capId);
+                if (checkbox && checkbox.checked) {
+                    baseFTE += ftePerCap[capId];
+                }
+            });
+            
+            // Get cluster count
+            const clusters = parseInt(document.getElementById('clusters').value);
+            
+            // Scale factor based on cluster count (more clusters = more ops overhead)
+            // 10-20 clusters = base, 50+ clusters = +20%, 100 clusters = +40%
+            let scaleFactor = 1.0;
+            if (clusters > 50) {
+                scaleFactor = 1.3;
+            } else if (clusters > 30) {
+                scaleFactor = 1.2;
+            } else if (clusters > 20) {
+                scaleFactor = 1.1;
+            }
+            
+            // Calculate total team needed
+            let totalFTE = Math.round(baseFTE * scaleFactor);
+            
+            // Minimum 3 engineers
+            totalFTE = Math.max(3, totalFTE);
+            
+            // Update team slider and display
+            document.getElementById('team').value = totalFTE;
+            document.getElementById('team-value').textContent = totalFTE;
+            
+            // Trigger ROI calculation
+            calculateROI();
+        }
+        
+        // Manual team adjustment (if user overrides)
+        function manualTeamAdjust() {
+            const teamSize = parseInt(document.getElementById('team').value);
+            document.getElementById('team-value').textContent = teamSize;
+            calculateROI();
+        }
+        
+        // ROI Calculator
+        function calculateROI() {
+            // Get inputs
+            const teamSize = parseInt(document.getElementById('team').value);
+            const clusters = parseInt(document.getElementById('clusters').value);
+            
+            // Update cluster display
+            document.getElementById('clusters-value').textContent = clusters;
+            
+            // Count selected capabilities
+            const capabilities = [
+                document.getElementById('cap-k8s'),
+                document.getElementById('cap-obs'),
+                document.getElementById('cap-sec'),
+                document.getElementById('cap-net'),
+                document.getElementById('cap-ai'),
+                document.getElementById('cap-edge')
+            ];
+            
+            const selectedCaps = capabilities.filter(cap => cap && cap.checked);
+            const capCount = selectedCaps.length;
+            
+            // Calculate DIY cost (€120K per FTE average)
+            const diyCost = teamSize * 120000;
+            
+            // Calculate Giant Swarm cost
+            // 3 FTE liaison team + platform fees (~€100K per capability)
+            const gsCost = (3 * 120000) + (capCount * 100000);
+            
+            // Calculate savings
+            const savings = Math.max(0, diyCost - gsCost);
+            
+            // Calculate engineers freed (team size - 3 liaison)
+            const engineersFreed = Math.max(0, teamSize - 3);
+            
+            // Format numbers
+            const formatEuro = (num) => {
+                if (num >= 1000000) {
+                    return '€' + (num / 1000000).toFixed(1) + 'M';
+                }
+                return '€' + (num / 1000).toFixed(0) + 'K';
+            };
+            
+            // Update display
+            document.getElementById('diy-cost').textContent = formatEuro(diyCost);
+            document.getElementById('gs-cost').textContent = formatEuro(gsCost);
+            document.getElementById('savings').textContent = formatEuro(savings);
+            document.getElementById('engineers-freed').textContent = engineersFreed + ' engineers';
+        }
+        
+        // Initialize calculator on load
+        document.addEventListener('DOMContentLoaded', () => {
+            autoUpdateTeamSize();
         });
 
         // Smooth scroll for anchor links
