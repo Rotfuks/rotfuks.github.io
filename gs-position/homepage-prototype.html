@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giant Swarm - Curated Platform Engineering Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Giant Swarm Brand Colors */
+        :root {
+            --gs-blue: #002645;
+            --gs-vivid-blue: #009fff;
+            --gs-orange: #e86d00;
+            --gs-black: #001122;
+            --gs-white: #fafafa;
+            --gs-electric-blue: #1a365d;
+            --gs-shadow-blue: #4a5568;
+            --white: #ffffff;
+            --text-primary: var(--gs-blue);
+            --text-secondary: var(--gs-electric-blue);
+            --text-muted: var(--gs-shadow-blue);
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--white);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gs-blue);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--gs-orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #c75f00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(232, 109, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gs-blue);
+            border: 2px solid var(--gs-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gs-blue);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--gs-blue) 0%, var(--gs-electric-blue) 100%);
+            color: var(--white);
+            padding: 100px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn-hero-primary {
+            background-color: var(--gs-orange);
+            color: var(--white);
+            padding: 20px 40px;
+            font-size: 18px;
+        }
+
+        .btn-hero-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 20px 40px;
+            font-size: 18px;
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .trust-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 5px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gs-blue);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Villain Section */
+        .villain-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .villain-stat {
+            text-align: center;
+            padding: 40px 30px;
+            background: #fff3cd;
+            border-radius: 12px;
+            border: 2px solid #ffc107;
+        }
+
+        .villain-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .villain-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .villain-detail {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Outcome Cards */
+        .outcome-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .outcome-card {
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .outcome-card:hover {
+            border-color: var(--gs-vivid-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 38, 69, 0.1);
+        }
+
+        .outcome-before-after {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gs-blue);
+            margin: 20px 0;
+        }
+
+        .outcome-arrow {
+            color: var(--gs-vivid-blue);
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+
+        .outcome-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gs-blue);
+            margin-bottom: 15px;
+        }
+
+        .outcome-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Tabs Section */
+        .capabilities-section {
+            background: var(--gs-white);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--border-color);
+            margin-bottom: 50px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            color: var(--gs-blue);
+            background: rgba(0, 159, 255, 0.05);
+        }
+
+        .tab.active {
+            color: var(--gs-blue);
+            border-bottom-color: var(--gs-orange);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .tab-visual {
+            background: var(--gs-white);
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #e8f4ff 0%, #f0f5ff 100%);
+            border: 2px dashed var(--gs-vivid-blue);
+            border-radius: 8px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .screenshot-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gs-blue);
+            margin-bottom: 15px;
+        }
+
+        .screenshot-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .annotation {
+            background: var(--white);
+            border-left: 4px solid var(--gs-orange);
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .tab-details {
+            padding-top: 20px;
+        }
+
+        .tab-outcome-headline {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gs-blue);
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .outcome-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .outcome-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .outcome-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gs-vivid-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .metric-box {
+            background: #e8f4ff;
+            border-left: 4px solid var(--gs-vivid-blue);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gs-blue);
+        }
+
+        .vs-box {
+            background: var(--gs-white);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .vs-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .vs-text {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .tab-ctas {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Social Proof Section */
+        .proof-section {
+            background: var(--gs-white);
+        }
+
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+
+        .proof-stat {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .proof-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gs-vivid-blue);
+            margin-bottom: 10px;
+        }
+
+        .proof-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gs-blue);
+        }
+
+        .proof-detail {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .customer-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-left: 5px solid var(--gs-orange);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.6;
+            color: var(--gs-blue);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Delivery Models */
+        .delivery-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .delivery-card {
+            background: var(--white);
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .delivery-card:hover {
+            border-color: var(--gs-vivid-blue);
+            box-shadow: 0 8px 24px rgba(0, 159, 255, 0.15);
+        }
+
+        .delivery-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gs-blue);
+            margin-bottom: 15px;
+        }
+
+        .delivery-tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .delivery-benefits {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .delivery-benefits li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .delivery-benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gs-vivid-blue);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .delivery-best-for {
+            background: #e8f4ff;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .both-include {
+            background: var(--gs-white);
+            border: 2px solid var(--gs-vivid-blue);
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .both-include-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gs-blue);
+            margin-bottom: 15px;
+        }
+
+        .both-include-items {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, var(--gs-blue) 0%, var(--gs-electric-blue) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .final-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .final-cta-text {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gs-black);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .outcome-cards,
+            .villain-stats,
+            .proof-stats,
+            .delivery-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-content.active {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1 1 calc(33% - 10px);
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">GIANT SWARM</div>
+                <a href="#demo" class="btn btn-primary">Book a Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Production-Ready Platform Stack in Days—Not 6-12 Months Assembling the CNCF Landscape</h1>
+                <p class="hero-subtitle">
+                    For platform engineering leaders at 500-5,000 employee companies: redirect 7 engineers from platform operations to your actual business value—unlock €600K-€1M in engineering capacity annually
+                </p>
+                <div class="hero-cta">
+                    <a href="#demo" class="btn btn-hero-primary">Book a Demo</a>
+                    <a href="#capabilities" class="btn btn-hero-secondary">Explore Platform Capabilities</a>
+                </div>
+                <div class="trust-bar">
+                    <div class="trust-item">
+                        <div class="trust-value">150+</div>
+                        <div class="trust-label">Production Clusters</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-value">10+</div>
+                        <div class="trust-label">Years Experience</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-value">€1.44M</div>
+                        <div class="trust-label">Customer Savings</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-value">CNCF</div>
+                        <div class="trust-label">AI-Conformance Certified</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Villain Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Platform Engineering Assembly Tax</h2>
+                <p class="section-subtitle">
+                    Platform teams spend 6-12 months integrating Kubernetes, observability, security, networking, and AI from the CNCF landscape—then need 8-15 specialists costing €1M-€1.8M annually just to keep it running
+                </p>
+            </div>
+            <div class="villain-stats">
+                <div class="villain-stat">
+                    <div class="villain-number">6-12</div>
+                    <div class="villain-label">Months to Production</div>
+                    <div class="villain-detail">Evaluation paralysis, integration hell, trial-and-error</div>
+                </div>
+                <div class="villain-stat">
+                    <div class="villain-number">€1.8M</div>
+                    <div class="villain-label">Annual Ops Cost</div>
+                    <div class="villain-detail">8-15 specialist engineers just to keep platforms running</div>
+                </div>
+                <div class="villain-stat">
+                    <div class="villain-number">€1M+</div>
+                    <div class="villain-label">Hidden Opportunity Cost</div>
+                    <div class="villain-detail">Best engineers fight infrastructure, not building products</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome Section -->
+    <section style="background: var(--gs-white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What You Achieve With Giant Swarm</h2>
+                <p class="section-subtitle">
+                    10+ years of battle-tested production curation—delivered as a complete platform stack
+                </p>
+            </div>
+            <div class="outcome-cards">
+                <div class="outcome-card">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">⚡</div>
+                    <div class="outcome-before-after">
+                        6-12 Months <span class="outcome-arrow">→</span> Days
+                    </div>
+                    <div class="outcome-title">Production-Ready Platform</div>
+                    <div class="outcome-description">
+                        Stop waiting quarters for platform capabilities. Start shipping today with battle-tested configurations from 150+ production clusters.
+                    </div>
+                </div>
+                <div class="outcome-card">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">👥</div>
+                    <div class="outcome-before-after">
+                        15 Engineers <span class="outcome-arrow">→</span> 3
+                    </div>
+                    <div class="outcome-title">Redirect to Business Value</div>
+                    <div class="outcome-description">
+                        Your best engineers build competitive advantages, not fight infrastructure. Redirect 7 engineers to your actual business value.
+                    </div>
+                </div>
+                <div class="outcome-card">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">💰</div>
+                    <div class="outcome-before-after">
+                        €1.8M <span class="outcome-arrow">→</span> €1M
+                    </div>
+                    <div class="outcome-title">Platform Operations Cost</div>
+                    <div class="outcome-description">
+                        Unlock €600K-€1M in engineering capacity for strategic initiatives. One customer saved €1.44M annually.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Capabilities (Tabs) -->
+    <section id="capabilities" class="capabilities-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Capabilities—Start with One, Expand Anytime</h2>
+                <p class="section-subtitle">
+                    Get what you need now. Add more capabilities as your platform matures. Every component works standalone or as part of the complete stack.
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="kubernetes">Kubernetes</div>
+                <div class="tab" data-tab="observability">Observability</div>
+                <div class="tab" data-tab="security">Security</div>
+                <div class="tab" data-tab="connectivity">Connectivity</div>
+                <div class="tab" data-tab="ai">AI Platform</div>
+                <div class="tab" data-tab="edge">Edge/IIoT</div>
+                <div class="tab" data-tab="applications">Applications</div>
+            </div>
+
+            <!-- Kubernetes Content -->
+            <div class="tab-content active" data-content="kubernetes">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">Cluster Creation Dashboard</div>
+                        <div class="screenshot-description">
+                            Screenshot showing cluster provisioning interface with progress bar: "Creating production-ready cluster... 2 minutes remaining"
+                            <br><br>
+                            Visual elements: AWS/Azure/On-prem options selected, pre-integrated tools visible (Cilium, Kyverno, Flux, Karpenter icons checked)
+                        </div>
+                    </div>
+                    <div class="annotation">→ Pre-integrated: Cilium, Kyverno, Flux, Karpenter included</div>
+                    <div class="annotation">→ Production-ready defaults, not bare cluster</div>
+                    <div class="annotation">→ Multi-cloud (AWS, Azure, on-prem) from single control plane</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">Production-Ready Kubernetes Foundation in Days</h3>
+                    <ul class="outcome-list">
+                        <li>Multi-cloud clusters (AWS, Azure, on-prem) production-ready in days</li>
+                        <li>Redirect 3 engineers from ops to business value</li>
+                        <li>30-40% cloud cost reduction with intelligent auto-scaling</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Proven Results</div>
+                        <div class="metric-value">30-40% Cloud Cost Reduction</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            Large retail customer using integrated Karpenter optimization
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. EKS/AKS</div>
+                        <div class="vs-text">Complete platform with integrated tooling and expert operations—not just a control plane you still need to integrate and operate yourself.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Observability Content -->
+            <div class="tab-content" data-content="observability">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">Unified Observability Dashboard</div>
+                        <div class="screenshot-description">
+                            Screenshot showing Grafana interface with metrics graph, click action to jump to correlated logs, then trace view
+                            <br><br>
+                            Visual flow: Metric spike → Click → Exact error log → Click → Distributed trace showing root cause
+                            <br><br>
+                            Timer overlay: "Root cause identified in 2 minutes"
+                        </div>
+                    </div>
+                    <div class="annotation">→ Click from metric spike to exact error log in 10 seconds</div>
+                    <div class="annotation">→ Metrics, logs, traces unified—no switching tools</div>
+                    <div class="annotation">→ Self-hosted: €340K total vs. Datadog €650K at 50TB/month</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">See Everything, Fix Issues Fast—At 50% Lower Cost</h3>
+                    <ul class="outcome-list">
+                        <li>Unified metrics, logs, traces—find root cause in minutes, not hours</li>
+                        <li>Free 2-3 engineers from observability ops to strategic work</li>
+                        <li>40-60% faster incident response with correlated data</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Cost Savings</div>
+                        <div class="metric-value">€310K+ Annual Savings</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            €340K total (€20K/month fixed) vs. Datadog €650K at 50TB/month
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. Datadog/SaaS</div>
+                        <div class="vs-text">Self-hosted in your environment with fixed €20K/month pricing (not usage-based). Data sovereignty + €310K+ annual savings.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Content -->
+            <div class="tab-content" data-content="security">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">Security Policy Enforcement</div>
+                        <div class="screenshot-description">
+                            Screenshot showing deployment being validated by Kyverno policy
+                            <br><br>
+                            Visual: Developer deploys container → Policy check → Clear feedback: "Rejected: Container running as root. Use securityContext.runAsNonRoot: true"
+                            <br><br>
+                            Dashboard showing: 90% vulnerability reduction over 12 months (graph trending down)
+                        </div>
+                    </div>
+                    <div class="annotation">→ Clear feedback to developers, not cryptic errors</div>
+                    <div class="annotation">→ Pre-configured policies for compliance (PSS, CIS benchmarks)</div>
+                    <div class="annotation">→ €100K/year vs. Sysdig €710K (85% cost savings)</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">Enterprise Security at 85% Lower Cost</h3>
+                    <ul class="outcome-list">
+                        <li>Comprehensive Kubernetes security (runtime, vulnerabilities, policies)</li>
+                        <li>90% vulnerability reduction achievable in under 1 year</li>
+                        <li>Free 2-3 engineers from security ops to strategic work</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Customer Savings</div>
+                        <div class="metric-value">€1.44M Saved</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            Customer replaced €1.5M commercial quote with €60K platform (96% savings)
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. Sysdig/Commercial Tools</div>
+                        <div class="vs-text">85% cost savings (€100K vs. €710K at 1,000 nodes) with self-hosted deployment. Same security outcomes, fraction of the cost.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connectivity Content -->
+            <div class="tab-content" data-content="connectivity">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">Zero-Configuration Application Deployment</div>
+                        <div class="screenshot-description">
+                            Screenshot showing application deployment flow
+                            <br><br>
+                            Visual: Developer commits code → GitOps deployment → Automatic ingress creation → DNS record created → HTTPS certificate issued
+                            <br><br>
+                            Result overlay: "App accessible at https://myapp.company.com - Certificates: Auto-renewed - DNS: Configured"
+                            <br><br>
+                            Timer: "Total configuration time: 0 minutes"
+                        </div>
+                    </div>
+                    <div class="annotation">→ Deploy app, get HTTPS endpoint automatically</div>
+                    <div class="annotation">→ Zero manual DNS or certificate configuration</div>
+                    <div class="annotation">→ Free 20+ hours/week from network troubleshooting</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">Networking That Disappears—Apps Go Live Immediately</h3>
+                    <ul class="outcome-list">
+                        <li>Zero-configuration networking—apps get DNS and certificates automatically</li>
+                        <li>Same-day app launches vs. multi-day network config cycles</li>
+                        <li>Avoid hiring 2-3 network specialists (€280-470K/year)</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Team Impact</div>
+                        <div class="metric-value">20+ Hours/Week Freed</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            Platform team redirects from network configuration to strategic initiatives
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. DIY Networking</div>
+                        <div class="vs-text">No network specialists needed. Zero per-app configuration. Production-ready from cluster creation vs. weeks of setup plus days per cluster.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Platform Content -->
+            <div class="tab-content" data-content="ai">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">AI Infrastructure & GPU Visibility Dashboard</div>
+                        <div class="screenshot-description">
+                            Screenshot showing GPU utilization dashboard with fair-share scheduling visualization
+                            <br><br>
+                            Visual elements:
+                            • GPU allocation by team/project (pie chart)
+                            • Token usage tracking (input/output costs)
+                            • Multi-cluster workload distribution
+                            • Cost per model/team breakdown
+                            <br><br>
+                            Callout: "CNCF AI-Conformance Certified - Among First Globally"
+                        </div>
+                    </div>
+                    <div class="annotation">→ Fair-share GPU scheduling—everyone gets access</div>
+                    <div class="annotation">→ Token-level cost tracking—see exactly where budget goes</div>
+                    <div class="annotation">→ CNCF certified—future-proof your AI investments</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">Production AI in Days—With GPU Optimization Built In</h3>
+                    <ul class="outcome-list">
+                        <li>Production-ready AI infrastructure in days vs. 6-12 months DIY</li>
+                        <li>Maximize expensive GPU investments with intelligent scheduling</li>
+                        <li>Complete visibility: tokens, compute costs by team/project/model</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Technical Validation</div>
+                        <div class="metric-value">CNCF AI-Conformance Certified</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            Among first platforms globally—solving AI use cases 1-2 years before standard existed
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. DIY AI Platform</div>
+                        <div class="vs-text">AI platform expertise nearly impossible to hire. We provide battle-tested infrastructure with GPU optimization, governance, and observability built in.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edge/IIoT Content -->
+            <div class="tab-content" data-content="edge">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">Edge-to-Cloud Factory Infrastructure</div>
+                        <div class="screenshot-description">
+                            Screenshot showing factory topology view
+                            <br><br>
+                            Visual: Map with 10 factory locations, each showing edge nodes (3-5 per factory) connected to cloud control plane
+                            <br><br>
+                            Metrics overlay:
+                            • 10-20 factories connected
+                            • 30-60 edge nodes total
+                            • Real-time sync status
+                            • OEE improvement: +12% average
+                            <br><br>
+                            Use case example: Visual inspection AI running at edge
+                        </div>
+                    </div>
+                    <div class="annotation">→ Edge AI visual inspection deployed in 2 days (not 6 months)</div>
+                    <div class="annotation">→ 10-15% OEE improvement, 16x downtime reduction potential</div>
+                    <div class="annotation">→ Data stays in factory (data sovereignty compliance)</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">Smart Factory Capabilities—Without Million-Euro Infrastructure Team</h3>
+                    <ul class="outcome-list">
+                        <li>Production edge-to-cloud infrastructure in days, not quarters</li>
+                        <li>10-15% OEE improvement with real-time manufacturing data</li>
+                        <li>Avoid €1M+ annual cost (8-10 FTE platform ops team)</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Cost Avoidance</div>
+                        <div class="metric-value">€1M+ Annually</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            Avoid hiring 8-10 FTE platform operations team (€960K-€1.2M/year)
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. DIY Edge Infrastructure</div>
+                        <div class="vs-text">Production-ready edge-to-cloud in days vs. 6-12 months DIY integration. Fully managed 24/7—no Kubernetes expertise required at factory level.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Content -->
+            <div class="tab-content" data-content="applications">
+                <div class="tab-visual">
+                    <div class="screenshot-placeholder">
+                        <div class="screenshot-title">Developer Portal & GitOps Workflow</div>
+                        <div class="screenshot-description">
+                            Screenshot showing Backstage developer portal
+                            <br><br>
+                            Visual: App catalog, deployment status, Flux resources visible
+                            <br><br>
+                            Developer view showing:
+                            • App health status (green checkmarks)
+                            • Recent deployments timeline
+                            • Error debugging without platform team
+                            <br><br>
+                            Metric callout: "Platform team interrupts: -60%"
+                        </div>
+                    </div>
+                    <div class="annotation">→ Developers troubleshoot independently using Backstage</div>
+                    <div class="annotation">→ GitOps from day 1 with proven repository patterns</div>
+                    <div class="annotation">→ Scales to 600+ apps per cluster without performance issues</div>
+                </div>
+                <div class="tab-details">
+                    <h3 class="tab-outcome-headline">Self-Service for Developers—Zero Operational Burden</h3>
+                    <ul class="outcome-list">
+                        <li>Developers deploy and troubleshoot independently with Backstage portal</li>
+                        <li>60-80% fewer platform team interrupts—redirect to strategic work</li>
+                        <li>Production-ready GitOps in days vs. months of decision-making</li>
+                    </ul>
+                    <div class="metric-box">
+                        <div class="metric-label">Customer Result</div>
+                        <div class="metric-value">0 to Production in ~1 Month</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
+                            Recent customer: from zero infrastructure to production deployments
+                        </div>
+                    </div>
+                    <div class="vs-box">
+                        <div class="vs-label">vs. Argo CD at Scale</div>
+                        <div class="vs-text">Flux scalability without 2 FTE maintenance burden. Backstage UX for developers. Proven GitOps patterns from day 1.</div>
+                    </div>
+                    <div class="tab-ctas">
+                        <a href="#demo" class="btn btn-primary">Book Demo</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add similar tab-content divs for other capabilities with placeholder content -->
+            <div class="tab-content" data-content="dummy">
+                <div style="text-align: center; padding: 60px 0;">
+                    <p style="font-size: 1.25rem; color: var(--text-secondary);">Content for this capability coming soon...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="proof-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Proven at Scale—Real Customer Outcomes</h2>
+            </div>
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <div class="proof-number">€1.44M</div>
+                    <div class="proof-label">Customer Savings</div>
+                    <div class="proof-detail">Replaced €1.5M commercial security quote with €60K platform</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number">30-40%</div>
+                    <div class="proof-label">Cloud Cost Reduction</div>
+                    <div class="proof-detail">Retail customer using integrated cost optimization</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number">90%</div>
+                    <div class="proof-label">Vulnerability Reduction</div>
+                    <div class="proof-detail">Achieved in under 1 year with integrated security</div>
+                </div>
+            </div>
+            <div class="customer-quote">
+                <div class="quote-text">
+                    "We went from 10 engineers on platform operations to 3, redirecting €800K in capacity to building competitive advantages instead of fighting infrastructure."
+                </div>
+                <div class="quote-author">— VP Engineering, Enterprise Customer</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Models -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Delivery Model</h2>
+                <p class="section-subtitle">
+                    Whether you want us to run it 24/7 or prefer to operate it yourself with expert guidance—you get the same battle-tested platform stack
+                </p>
+            </div>
+            <div class="delivery-cards">
+                <div class="delivery-card">
+                    <div class="delivery-title">Fully-Managed</div>
+                    <div class="delivery-tagline">We run it 24/7 for you</div>
+                    <ul class="delivery-benefits">
+                        <li>Zero operational burden—focus 100% on business value</li>
+                        <li>24/7 proactive monitoring and expert operations</li>
+                        <li>We get paged before issues impact you</li>
+                        <li>Continuous upgrades and security patches</li>
+                    </ul>
+                    <div class="delivery-best-for">
+                        <strong>Best for:</strong> Teams who want maximum focus on product development, no platform operations overhead
+                    </div>
+                </div>
+                <div class="delivery-card">
+                    <div class="delivery-title">Expert-Supported</div>
+                    <div class="delivery-tagline">You run it with our guidance</div>
+                    <ul class="delivery-benefits">
+                        <li>Complete control—everything in your hands</li>
+                        <li>Build in-house knowledge with expert training</li>
+                        <li>No third-party access to production systems</li>
+                        <li>Expert support when you need it</li>
+                    </ul>
+                    <div class="delivery-best-for">
+                        <strong>Best for:</strong> Security-conscious teams, regulated industries requiring full control, organizations building internal capability
+                    </div>
+                </div>
+            </div>
+            <div class="both-include">
+                <div class="both-include-title">Both Models Include:</div>
+                <div class="both-include-items">
+                    Production-validated configurations from 150+ clusters • Expert knowledge transfer • Self-hosted in your environment • 100% open-source (zero vendor lock-in) • Same curated platform stack
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="demo" class="final-cta">
+        <div class="container">
+            <h2 class="final-cta-title">Ready to Skip the Assembly Tax?</h2>
+            <p class="final-cta-text">
+                See how Giant Swarm delivers production-ready platform capabilities in days—not 6-12 months of integration hell
+            </p>
+            <a href="#" class="btn btn-hero-primary">Book a Demo</a>
+            <p style="margin-top: 20px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.8);">
+                Or <a href="#" style="color: var(--white); text-decoration: underline;">talk to an expert</a> about your specific requirements
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Giant Swarm. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Tabs -->
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const targetContent = document.querySelector(`[data-content="${targetTab}"]`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
