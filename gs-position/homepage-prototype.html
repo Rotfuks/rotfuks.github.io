@@ -105,7 +105,7 @@
         .hero {
             background: linear-gradient(135deg, var(--gs-blue) 0%, var(--gs-electric-blue) 100%);
             color: var(--white);
-            padding: 100px 0 120px;
+            padding: 100px 0 80px;
             position: relative;
             overflow: hidden;
         }
@@ -116,7 +116,7 @@
             text-align: center;
         }
 
-        .hero-title {
+        .hero-title-main {
             font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
@@ -124,11 +124,19 @@
             color: var(--white);
         }
 
+        .hero-title-sub {
+            font-size: 2rem;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 32px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             line-height: 1.6;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 400;
         }
 
@@ -136,7 +144,7 @@
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 0;
         }
 
         .btn-hero-primary {
@@ -162,8 +170,8 @@
             display: flex;
             justify-content: center;
             gap: 50px;
-            margin-top: 60px;
-            padding-top: 40px;
+            margin-top: 70px;
+            padding-top: 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -644,8 +652,24 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-title {
+            .hero-title-main {
                 font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .hero-title-sub {
+                font-size: 1.5rem;
+                margin-bottom: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 36px;
+            }
+            
+            .trust-bar {
+                margin-top: 50px;
+                padding-top: 40px;
             }
             
             .outcome-cards,
@@ -685,9 +709,10 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">The Curated Platform Engineering Stack - 10+ Years of Production Experience, Ready in Days</h1>
+                <h1 class="hero-title-main">The Curated Platform Engineering Stack</h1>
+                <div class="hero-title-sub">10+ Years of Production Experience, Ready in Days</div>
                 <p class="hero-subtitle">
-                    Skip the Platform Engineering Assembly Tax. Get battle-tested Kubernetes, observability, security, networking, AI, and application management—curated from 150+ production clusters—with expert operations or expert support
+                    Skip the Platform Engineering Assembly Tax. Get battle-tested Kubernetes, observability, security, networking, AI, and application management curated from 150+ production clusters with expert operations or expert support
                 </p>
                 <div class="hero-cta">
                     <a href="#demo" class="btn btn-hero-primary">Book a Demo</a>
@@ -721,7 +746,7 @@
             <div class="section-header">
                 <h2 class="section-title">The Platform Engineering Assembly Tax</h2>
                 <p class="section-subtitle">
-                    Platform teams spend 6-12 months integrating Kubernetes, observability, security, networking, and AI from the CNCF landscape—then need 8-15 specialists costing €1M-€1.8M annually just to keep it running
+                    Platform teams spend 6-12 months integrating Kubernetes, observability, security, networking, and AI from the CNCF landscape, then need 8-15 specialists costing €1M-€1.8M annually just to keep it running
                 </p>
             </div>
             <div class="villain-stats">
@@ -750,7 +775,7 @@
             <div class="section-header">
                 <h2 class="section-title">What You Achieve With Giant Swarm</h2>
                 <p class="section-subtitle">
-                    10+ years of battle-tested production curation—delivered as a complete platform stack
+                    10+ years of battle-tested production curation delivered as a complete platform stack or as individual capabilities
                 </p>
             </div>
             <div class="outcome-cards">
@@ -792,7 +817,7 @@
     <section id="capabilities" class="capabilities-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Platform Capabilities—Start with One, Expand Anytime</h2>
+                <h2 class="section-title">Platform Capabilities: Start with One, Expand Anytime</h2>
                 <p class="section-subtitle">
                     Get what you need now. Add more capabilities as your platform matures. Every component works standalone or as part of the complete stack.
                 </p>
@@ -800,17 +825,17 @@
 
             <!-- Tabs -->
             <div class="tabs">
-                <div class="tab active" data-tab="kubernetes">Kubernetes</div>
+                <div class="tab active" data-tab="ai">AI Infrastructure</div>
                 <div class="tab" data-tab="observability">Observability</div>
                 <div class="tab" data-tab="security">Security</div>
+                <div class="tab" data-tab="kubernetes">Kubernetes</div>
                 <div class="tab" data-tab="connectivity">Connectivity</div>
-                <div class="tab" data-tab="ai">AI Platform</div>
                 <div class="tab" data-tab="edge">Edge/IIoT</div>
                 <div class="tab" data-tab="applications">Applications</div>
             </div>
 
             <!-- Kubernetes Content -->
-            <div class="tab-content active" data-content="kubernetes">
+            <div class="tab-content" data-content="kubernetes">
                 <div class="tab-visual">
                     <div class="screenshot-placeholder">
                         <div class="screenshot-title">Cluster Creation Dashboard</div>
@@ -840,7 +865,7 @@
                     </div>
                     <div class="vs-box">
                         <div class="vs-label">vs. EKS/AKS</div>
-                        <div class="vs-text">Complete platform with integrated tooling and expert operations—not just a control plane you still need to integrate and operate yourself.</div>
+                        <div class="vs-text">Complete platform with integrated tooling and expert operations, not just a control plane you still need to integrate and operate yourself.</div>
                     </div>
                     <div class="tab-ctas">
                         <a href="#demo" class="btn btn-primary">Book Demo</a>
@@ -863,13 +888,13 @@
                         </div>
                     </div>
                     <div class="annotation">→ Click from metric spike to exact error log in 10 seconds</div>
-                    <div class="annotation">→ Metrics, logs, traces unified—no switching tools</div>
+                    <div class="annotation">→ Metrics, logs, traces unified, no switching tools</div>
                     <div class="annotation">→ Self-hosted: €340K total vs. Datadog €650K at 50TB/month</div>
                 </div>
                 <div class="tab-details">
-                    <h3 class="tab-outcome-headline">See Everything, Fix Issues Fast—At 50% Lower Cost</h3>
+                    <h3 class="tab-outcome-headline">See Everything, Fix Issues Fast at 50% Lower Cost</h3>
                     <ul class="outcome-list">
-                        <li>Unified metrics, logs, traces—find root cause in minutes, not hours</li>
+                        <li>Unified metrics, logs, traces to find root cause in minutes, not hours</li>
                         <li>Free 2-3 engineers from observability ops to strategic work</li>
                         <li>40-60% faster incident response with correlated data</li>
                     </ul>
@@ -953,9 +978,9 @@
                     <div class="annotation">→ Free 20+ hours/week from network troubleshooting</div>
                 </div>
                 <div class="tab-details">
-                    <h3 class="tab-outcome-headline">Networking That Disappears—Apps Go Live Immediately</h3>
+                    <h3 class="tab-outcome-headline">Networking That Disappears: Apps Go Live Immediately</h3>
                     <ul class="outcome-list">
-                        <li>Zero-configuration networking—apps get DNS and certificates automatically</li>
+                        <li>Zero-configuration networking: apps get DNS and certificates automatically</li>
                         <li>Same-day app launches vs. multi-day network config cycles</li>
                         <li>Avoid hiring 2-3 network specialists (€280-470K/year)</li>
                     </ul>
@@ -977,8 +1002,8 @@
                 </div>
             </div>
 
-            <!-- AI Platform Content -->
-            <div class="tab-content" data-content="ai">
+            <!-- AI Infrastructure Content -->
+            <div class="tab-content active" data-content="ai">
                 <div class="tab-visual">
                     <div class="screenshot-placeholder">
                         <div class="screenshot-title">AI Infrastructure & GPU Visibility Dashboard</div>
@@ -994,12 +1019,12 @@
                             Callout: "CNCF AI-Conformance Certified - Among First Globally"
                         </div>
                     </div>
-                    <div class="annotation">→ Fair-share GPU scheduling—everyone gets access</div>
-                    <div class="annotation">→ Token-level cost tracking—see exactly where budget goes</div>
-                    <div class="annotation">→ CNCF certified—future-proof your AI investments</div>
+                    <div class="annotation">→ Fair-share GPU scheduling: everyone gets access</div>
+                    <div class="annotation">→ Token-level cost tracking: see exactly where budget goes</div>
+                    <div class="annotation">→ CNCF certified: future-proof your AI investments</div>
                 </div>
                 <div class="tab-details">
-                    <h3 class="tab-outcome-headline">Production AI in Days—With GPU Optimization Built In</h3>
+                    <h3 class="tab-outcome-headline">Production AI in Days with GPU Optimization Built In</h3>
                     <ul class="outcome-list">
                         <li>Production-ready AI infrastructure in days vs. 6-12 months DIY</li>
                         <li>Maximize expensive GPU investments with intelligent scheduling</li>
@@ -1009,11 +1034,11 @@
                         <div class="metric-label">Technical Validation</div>
                         <div class="metric-value">CNCF AI-Conformance Certified</div>
                         <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px;">
-                            Among first platforms globally—solving AI use cases 1-2 years before standard existed
+                            Among first platforms globally, solving AI use cases 1-2 years before standard existed
                         </div>
                     </div>
                     <div class="vs-box">
-                        <div class="vs-label">vs. DIY AI Platform</div>
+                        <div class="vs-label">vs. DIY AI Infrastructure</div>
                         <div class="vs-text">AI platform expertise nearly impossible to hire. We provide battle-tested infrastructure with GPU optimization, governance, and observability built in.</div>
                     </div>
                     <div class="tab-ctas">
@@ -1047,7 +1072,7 @@
                     <div class="annotation">→ Data stays in factory (data sovereignty compliance)</div>
                 </div>
                 <div class="tab-details">
-                    <h3 class="tab-outcome-headline">Smart Factory Capabilities—Without Million-Euro Infrastructure Team</h3>
+                    <h3 class="tab-outcome-headline">Smart Factory Capabilities Without Million-Euro Infrastructure Team</h3>
                     <ul class="outcome-list">
                         <li>Production edge-to-cloud infrastructure in days, not quarters</li>
                         <li>10-15% OEE improvement with real-time manufacturing data</li>
@@ -1062,7 +1087,7 @@
                     </div>
                     <div class="vs-box">
                         <div class="vs-label">vs. DIY Edge Infrastructure</div>
-                        <div class="vs-text">Production-ready edge-to-cloud in days vs. 6-12 months DIY integration. Fully managed 24/7—no Kubernetes expertise required at factory level.</div>
+                        <div class="vs-text">Production-ready edge-to-cloud in days vs. 6-12 months DIY integration. Fully managed 24/7, no Kubernetes expertise required at factory level.</div>
                     </div>
                     <div class="tab-ctas">
                         <a href="#demo" class="btn btn-primary">Book Demo</a>
@@ -1094,10 +1119,10 @@
                     <div class="annotation">→ Scales to 600+ apps per cluster without performance issues</div>
                 </div>
                 <div class="tab-details">
-                    <h3 class="tab-outcome-headline">Self-Service for Developers—Zero Operational Burden</h3>
+                    <h3 class="tab-outcome-headline">Self-Service for Developers with Zero Operational Burden</h3>
                     <ul class="outcome-list">
                         <li>Developers deploy and troubleshoot independently with Backstage portal</li>
-                        <li>60-80% fewer platform team interrupts—redirect to strategic work</li>
+                        <li>60-80% fewer platform team interrupts to redirect to strategic work</li>
                         <li>Production-ready GitOps in days vs. months of decision-making</li>
                     </ul>
                     <div class="metric-box">
@@ -1134,7 +1159,7 @@
             <div class="section-header">
                 <h2 class="section-title">Choose Your Delivery Model</h2>
                 <p class="section-subtitle">
-                    Whether you want us to run it 24/7 or prefer to operate it yourself with expert guidance—you get the same battle-tested platform stack
+                    Whether you want us to run it 24/7 or prefer to operate it yourself with expert guidance, you get the same battle-tested platform stack or individual capabilities
                 </p>
             </div>
             <div class="delivery-cards">
@@ -1142,7 +1167,7 @@
                     <div class="delivery-title">Fully-Managed</div>
                     <div class="delivery-tagline">We run it 24/7 for you</div>
                     <ul class="delivery-benefits">
-                        <li>Zero operational burden—focus 100% on business value</li>
+                        <li>Zero operational burden: focus 100% on business value</li>
                         <li>24/7 proactive monitoring and expert operations</li>
                         <li>We get paged before issues impact you</li>
                         <li>Continuous upgrades and security patches</li>
@@ -1155,7 +1180,7 @@
                     <div class="delivery-title">Expert-Supported</div>
                     <div class="delivery-tagline">You run it with our guidance</div>
                     <ul class="delivery-benefits">
-                        <li>Complete control—everything in your hands</li>
+                        <li>Complete control: everything in your hands</li>
                         <li>Build in-house knowledge with expert training</li>
                         <li>No third-party access to production systems</li>
                         <li>Expert support when you need it</li>
@@ -1168,7 +1193,7 @@
             <div class="both-include">
                 <div class="both-include-title">Both Models Include:</div>
                 <div class="both-include-items">
-                    Production-validated configurations from 150+ clusters • Expert knowledge transfer • Self-hosted in your environment • 100% open-source (zero vendor lock-in) • Same curated platform stack
+                    Production-validated configurations from 150+ clusters • Expert knowledge transfer • Self-hosted in your environment • 100% open-source (zero vendor lock-in) • Same curated platform stack or individual capabilities
                 </div>
             </div>
         </div>
@@ -1178,7 +1203,7 @@
     <section class="proof-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Proven at Scale—Real Customer Outcomes</h2>
+                <h2 class="section-title">Proven at Scale: Real Customer Outcomes</h2>
             </div>
             <div class="proof-stats">
                 <div class="proof-stat">
@@ -1201,7 +1226,7 @@
                 <div class="quote-text">
                     "We went from 10 engineers on platform operations to 3, redirecting €800K in capacity to building competitive advantages instead of fighting infrastructure."
                 </div>
-                <div class="quote-author">— VP Engineering, Enterprise Customer</div>
+                <div class="quote-author">VP Engineering, Enterprise Customer</div>
             </div>
         </div>
     </section>
@@ -1263,7 +1288,7 @@
                             </label>
                             <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
                                 <input type="checkbox" id="cap-ai" onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
-                                <span style="font-weight: 500;">AI Platform</span>
+                                <span style="font-weight: 500;">AI Infrastructure</span>
                             </label>
                             <label style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--gs-white); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;">
                                 <input type="checkbox" id="cap-edge" onchange="autoUpdateTeamSize()" style="width: 18px; height: 18px; accent-color: var(--gs-orange);">
@@ -1304,7 +1329,7 @@
         <div class="container">
             <h2 class="final-cta-title">Ready to Skip the Assembly Tax?</h2>
             <p class="final-cta-text">
-                See how Giant Swarm delivers production-ready platform capabilities in days—not 6-12 months of integration hell
+                See how Giant Swarm delivers production-ready platform capabilities in days, not 6-12 months of integration hell
             </p>
             <a href="#" class="btn btn-hero-primary">Book a Demo</a>
             <p style="margin-top: 20px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.8);">
