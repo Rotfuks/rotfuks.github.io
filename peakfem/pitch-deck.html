@@ -598,6 +598,196 @@
             margin-top: 0.3rem;
         }
 
+        /* Go-to-Market / Marketing & Sales */
+        .gtm-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .gtm-phases {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .phase-marker {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-accent-coral) 0%, var(--color-accent-peach) 100%);
+            color: var(--color-bg-dark);
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .phase-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .phase-content p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            text-align: left;
+        }
+
+        .phase-connector {
+            width: 2px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.15);
+            margin-left: 17px;
+        }
+
+        .gtm-channels {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .channel-section h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent-peach);
+            margin-bottom: 0.6rem;
+        }
+
+        .channel-section p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+
+        .channel-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .channel-tag {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+        }
+
+        .channel-tag.primary {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: var(--color-accent-coral);
+            color: var(--color-accent-coral);
+        }
+
+        .positioning-badge {
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            display: inline-block;
+        }
+
+        .positioning-badge span {
+            color: var(--color-accent-peach);
+            font-weight: 500;
+        }
+
+        /* Competitor cards */
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .competitor-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: left;
+        }
+
+        .competitor-card.peakfem {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12) 0%, rgba(255, 160, 122, 0.08) 100%);
+            border-color: var(--color-accent-coral);
+        }
+
+        .competitor-name {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 0.2rem;
+        }
+
+        .competitor-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .competitor-traits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .competitor-traits li {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .competitor-traits li::before {
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .competitor-traits li.pro::before {
+            content: '✓';
+            color: #64c896;
+        }
+
+        .competitor-traits li.con::before {
+            content: '✗';
+            color: var(--color-accent-coral);
+        }
+
+        .competitor-traits li.neutral::before {
+            content: '○';
+            color: var(--color-text-muted);
+        }
+
+        .peakfem .competitor-name {
+            color: var(--color-accent-coral);
+        }
+
         /* SWOT / Opportunities & Risks */
         .swot-grid {
             display: grid;
@@ -869,6 +1059,16 @@
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+            
+            .competitor-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            
+            .gtm-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
     </style>
 </head>
@@ -998,8 +1198,115 @@
             </div>
         </div>
 
-        <!-- Slide 6: Business Model -->
+        <!-- Slide 6: Competitive Landscape -->
         <div class="slide" data-slide="6">
+            <div class="slide-content">
+                <h3>Competitive Landscape</h3>
+                <h2>Where we stand out</h2>
+                <div class="competitor-grid">
+                    <div class="competitor-card">
+                        <div class="competitor-name">FitR Woman</div>
+                        <div class="competitor-type">Direct Competitor</div>
+                        <ul class="competitor-traits">
+                            <li class="con">Static, phase-based recommendations</li>
+                            <li class="con">Limited real-time wearable integration</li>
+                            <li class="con">Opaque pricing</li>
+                        </ul>
+                    </div>
+                    <div class="competitor-card">
+                        <div class="competitor-name">Wild.AI</div>
+                        <div class="competitor-type">Direct Competitor</div>
+                        <ul class="competitor-traits">
+                            <li class="neutral">Deeper personalization</li>
+                            <li class="neutral">Multi-wearable support</li>
+                            <li class="con">Broad hormonal focus, not daily performance</li>
+                            <li class="neutral">€60-70/year</li>
+                        </ul>
+                    </div>
+                    <div class="competitor-card">
+                        <div class="competitor-name">Apple Health</div>
+                        <div class="competitor-type">Indirect Competitor</div>
+                        <ul class="competitor-traits">
+                            <li class="pro">45% smartwatch market share</li>
+                            <li class="pro">Dominant wearable ecosystem</li>
+                            <li class="con">Cycle tracking is descriptive only</li>
+                            <li class="con">No actionable guidance</li>
+                        </ul>
+                    </div>
+                    <div class="competitor-card peakfem">
+                        <div class="competitor-name">Peakfem</div>
+                        <div class="competitor-type">Our Position</div>
+                        <ul class="competitor-traits">
+                            <li class="pro">Olympic-validated protocols</li>
+                            <li class="pro">Real-time readiness + cycle phase</li>
+                            <li class="pro">Daily actionable recommendations</li>
+                            <li class="pro">Premium positioning (€14.99/mo)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Marketing & Sales -->
+        <div class="slide" data-slide="7">
+            <div class="slide-content">
+                <h3>Go-to-Market</h3>
+                <h2>Marketing & Sales Strategy</h2>
+                <div class="gtm-container">
+                    <div class="gtm-phases">
+                        <div class="phase-item">
+                            <div class="phase-marker">1</div>
+                            <div class="phase-content">
+                                <h4>Pre-Launch</h4>
+                                <p>Influencer testing, community building, beta user acquisition</p>
+                            </div>
+                        </div>
+                        <div class="phase-connector"></div>
+                        <div class="phase-item">
+                            <div class="phase-marker">2</div>
+                            <div class="phase-content">
+                                <h4>Public Launch</h4>
+                                <p>Months 9-12 · Content-driven organic acquisition</p>
+                            </div>
+                        </div>
+                        <div class="phase-connector"></div>
+                        <div class="phase-item">
+                            <div class="phase-marker">3</div>
+                            <div class="phase-content">
+                                <h4>Growth</h4>
+                                <p>Wearable partnerships (Garmin, Whoop) · B2B expansion</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gtm-channels">
+                        <div class="channel-section">
+                            <h4>Marketing Channels</h4>
+                            <div class="channel-tags">
+                                <span class="channel-tag">Instagram</span>
+                                <span class="channel-tag">TikTok</span>
+                                <span class="channel-tag">YouTube</span>
+                                <span class="channel-tag">Micro-influencers</span>
+                            </div>
+                            <p>Educational short-form videos · Athlete storytelling · Evidence-based content</p>
+                        </div>
+                        <div class="channel-section">
+                            <h4>Sales Channels</h4>
+                            <div class="channel-tags">
+                                <span class="channel-tag primary">B2C Subscriptions</span>
+                                <span class="channel-tag">B2B Partnerships</span>
+                            </div>
+                            <p>Fitness studios · Personal trainers · Corporate wellness programs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="positioning-badge">
+                    <span>Premium positioning:</span> High scientific validity × High personalization
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Business Model -->
+        <div class="slide" data-slide="8">
             <div class="slide-content">
                 <h3>Business Model</h3>
                 <h2>Premium subscription</h2>
@@ -1033,8 +1340,8 @@
             </div>
         </div>
 
-        <!-- Slide 7: Cost Structure -->
-        <div class="slide" data-slide="7">
+        <!-- Slide 9: Cost Structure -->
+        <div class="slide" data-slide="9">
             <div class="slide-content">
                 <h3>Cost Structure</h3>
                 <h2>Lean & capital-efficient</h2>
@@ -1076,8 +1383,8 @@
             </div>
         </div>
 
-        <!-- Slide 8: Team -->
-        <div class="slide" data-slide="8">
+        <!-- Slide 10: Team -->
+        <div class="slide" data-slide="10">
             <div class="slide-content">
                 <h3>The Team</h3>
                 <h2>Execution meets elite expertise</h2>
@@ -1120,8 +1427,8 @@
             </div>
         </div>
 
-        <!-- Slide 9: Opportunities & Risks -->
-        <div class="slide" data-slide="9">
+        <!-- Slide 11: Opportunities & Risks -->
+        <div class="slide" data-slide="11">
             <div class="slide-content">
                 <h3>Strategic Outlook</h3>
                 <h2>Opportunities & Risks</h2>
@@ -1155,8 +1462,8 @@
             </div>
         </div>
 
-        <!-- Slide 10: The Ask -->
-        <div class="slide" data-slide="10">
+        <!-- Slide 12: The Ask -->
+        <div class="slide" data-slide="12">
             <div class="slide-content">
                 <h3>The Ask</h3>
                 <h2>Join us in empowering women</h2>
@@ -1179,7 +1486,7 @@
     <nav class="nav">
         <button class="nav-btn" id="prevBtn" disabled>←</button>
         <div class="progress-dots" id="dots"></div>
-        <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">10</span></span>
+        <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">12</span></span>
         <button class="nav-btn" id="nextBtn">→</button>
     </nav>
 
