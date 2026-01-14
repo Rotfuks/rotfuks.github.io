@@ -858,6 +858,150 @@
             font-weight: 500;
         }
 
+        /* Business model layout */
+        .business-model-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .pricing-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .pricing-section .pricing-grid {
+            margin-top: 0;
+            max-width: none;
+        }
+
+        .clv-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .clv-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent-peach);
+        }
+
+        .clv-label {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .projections-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .projection-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .projection-card.highlight {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12) 0%, rgba(255, 160, 122, 0.08) 100%);
+            border-color: var(--color-accent-coral);
+        }
+
+        .projection-year {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            padding-right: 1rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+
+        .highlight .projection-year {
+            color: var(--color-accent-coral);
+        }
+
+        .projection-col {
+            text-align: center;
+            flex: 1;
+        }
+
+        .projection-value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            white-space: nowrap;
+        }
+
+        .projection-value.revenue {
+            color: var(--color-accent-peach);
+        }
+
+        .projection-value.share {
+            color: #64c896;
+        }
+
+        .projection-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .margin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(100, 200, 150, 0.1);
+            border: 1px solid rgba(100, 200, 150, 0.3);
+            border-radius: 50px;
+        }
+
+        .margin-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #64c896;
+        }
+
+        .margin-label {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Product showcase */
+        .product-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .product-image {
+            max-width: 90%;
+            max-height: 55vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            object-fit: contain;
+        }
+
         /* CTA slide */
         .cta-amount {
             font-family: var(--font-display);
@@ -1069,6 +1213,25 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+            
+            .business-model-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .projection-card {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .projection-year {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 0.5rem;
+                padding-right: 0;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -1154,8 +1317,19 @@
             </div>
         </div>
 
-        <!-- Slide 5: Market Opportunity -->
+        <!-- Slide 5: Product Design -->
         <div class="slide" data-slide="5">
+            <div class="slide-content">
+                <h3>Product Design</h3>
+                <h2>The Peakfem Experience</h2>
+                <div class="product-showcase">
+                    <img src="design.jpeg" alt="Peakfem App Design" class="product-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Market Opportunity -->
+        <div class="slide" data-slide="6">
             <div class="slide-content">
                 <h3>Market Opportunity</h3>
                 <h2>A growing, underserved market in Germany</h2>
@@ -1198,8 +1372,8 @@
             </div>
         </div>
 
-        <!-- Slide 6: Competitive Landscape -->
-        <div class="slide" data-slide="6">
+        <!-- Slide 7: Competitive Landscape -->
+        <div class="slide" data-slide="7">
             <div class="slide-content">
                 <h3>Competitive Landscape</h3>
                 <h2>Where we stand out</h2>
@@ -1247,8 +1421,8 @@
             </div>
         </div>
 
-        <!-- Slide 7: Marketing & Sales -->
-        <div class="slide" data-slide="7">
+        <!-- Slide 8: Marketing & Sales -->
+        <div class="slide" data-slide="8">
             <div class="slide-content">
                 <h3>Go-to-Market</h3>
                 <h2>Marketing & Sales Strategy</h2>
@@ -1301,41 +1475,6 @@
                 </div>
                 <div class="positioning-badge">
                     <span>Premium positioning:</span> High scientific validity × High personalization
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 8: Business Model -->
-        <div class="slide" data-slide="8">
-            <div class="slide-content">
-                <h3>Business Model</h3>
-                <h2>Premium subscription</h2>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="price-label">Monthly</div>
-                        <div class="price">€14.99</div>
-                        <div class="price-period">per month</div>
-                    </div>
-                    <div class="pricing-card featured">
-                        <div class="price-label">Annual</div>
-                        <div class="price">€119.88</div>
-                        <div class="price-period">per year</div>
-                        <div class="discount-badge">Save 33%</div>
-                    </div>
-                </div>
-                <div class="stats-grid" style="margin-top: 3rem;">
-                    <div class="stat-item">
-                        <div class="stat-number">€210</div>
-                        <div class="stat-label">Customer Lifetime Value</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">€1M</div>
-                        <div class="stat-label">Target ARR by Year 3</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50%+</div>
-                        <div class="stat-label">Operating Margin at Scale</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1427,8 +1566,73 @@
             </div>
         </div>
 
-        <!-- Slide 11: Opportunities & Risks -->
+        <!-- Slide 11: Business Model -->
         <div class="slide" data-slide="11">
+            <div class="slide-content">
+                <h3>Business Model</h3>
+                <h2>Premium subscription</h2>
+                <div class="business-model-layout">
+                    <div class="pricing-section">
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <div class="price-label">Monthly</div>
+                                <div class="price">€14.99</div>
+                                <div class="price-period">per month</div>
+                            </div>
+                            <div class="pricing-card featured">
+                                <div class="price-label">Annual</div>
+                                <div class="price">€119.88</div>
+                                <div class="price-period">per year</div>
+                                <div class="discount-badge">Save 33%</div>
+                            </div>
+                        </div>
+                        <div class="clv-badge">
+                            <span class="clv-value">€210</span>
+                            <span class="clv-label">Customer Lifetime Value</span>
+                        </div>
+                    </div>
+                    <div class="projections-section">
+                        <div class="projection-card">
+                            <div class="projection-year">Year 1</div>
+                            <div class="projection-col">
+                                <div class="projection-value">300–1K</div>
+                                <div class="projection-label">paying users</div>
+                            </div>
+                            <div class="projection-col">
+                                <div class="projection-value revenue">€50K–€150K</div>
+                                <div class="projection-label">revenue</div>
+                            </div>
+                            <div class="projection-col">
+                                <div class="projection-value share">~0.1%</div>
+                                <div class="projection-label">market share</div>
+                            </div>
+                        </div>
+                        <div class="projection-card highlight">
+                            <div class="projection-year">Year 3</div>
+                            <div class="projection-col">
+                                <div class="projection-value">~6,500</div>
+                                <div class="projection-label">subscribers</div>
+                            </div>
+                            <div class="projection-col">
+                                <div class="projection-value revenue">~€1M</div>
+                                <div class="projection-label">ARR</div>
+                            </div>
+                            <div class="projection-col">
+                                <div class="projection-value share">~1.1%</div>
+                                <div class="projection-label">market share</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin-badge">
+                    <span class="margin-value">50%+</span>
+                    <span class="margin-label">Operating margin at scale</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Opportunities & Risks -->
+        <div class="slide" data-slide="12">
             <div class="slide-content">
                 <h3>Strategic Outlook</h3>
                 <h2>Opportunities & Risks</h2>
@@ -1462,8 +1666,8 @@
             </div>
         </div>
 
-        <!-- Slide 12: The Ask -->
-        <div class="slide" data-slide="12">
+        <!-- Slide 13: The Ask -->
+        <div class="slide" data-slide="13">
             <div class="slide-content">
                 <h3>The Ask</h3>
                 <h2>Join us in empowering women</h2>
@@ -1486,7 +1690,7 @@
     <nav class="nav">
         <button class="nav-btn" id="prevBtn" disabled>←</button>
         <div class="progress-dots" id="dots"></div>
-        <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">12</span></span>
+        <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">13</span></span>
         <button class="nav-btn" id="nextBtn">→</button>
     </nav>
 
