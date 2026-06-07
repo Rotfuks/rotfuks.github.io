@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 160" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDA Wordmark</title>
+  <desc id="desc">Geometric EVIDA wordmark reconstructed from the supplied brand board.</desc>
+  <defs>
+    <linearGradient id="evidaDark" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0F3D37"></stop>
+      <stop offset="1" stop-color="#082D29"></stop>
+    </linearGradient>
+  </defs>
+  <g fill="url(#evidaDark)">
+    <path d="M10 10h120v18H31v43h87v18H31v43h99v18H10z"></path>
+    <path d="M168 10h26l60 122 60-122h26l-73 140h-26z"></path>
+    <path d="M384 10h21v140h-21z"></path>
+    <path fill-rule="evenodd" d="M452 10h80c81 0 134 45 134 70s-53 70-134 70h-80zm21 18v104h58c65 0 112-32 112-52s-47-52-112-52z"></path>
+    <path d="M704 150h-25L746 10h27l67 140h-25L759 32z"></path>
+  </g>
+  <circle cx="779" cy="114" r="14" fill="#9CAF9B"></circle>
+</svg>

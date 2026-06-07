@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 360" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDA Stacked Lockup</title>
+  <desc id="desc">EVIDA icon mark stacked above the wordmark.</desc>
+  <defs>
+    <linearGradient id="evidaDark" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0F3D37"></stop>
+      <stop offset="1" stop-color="#082D29"></stop>
+    </linearGradient>
+  </defs>
+  <g transform="translate(170 18) scale(.92)">
+    <path d="M184 61A88 88 0 1 0 184 159" fill="none" stroke="url(#evidaDark)" stroke-width="16"></path>
+    <rect x="78" y="78" width="78" height="13" fill="url(#evidaDark)"></rect>
+    <rect x="51" y="104" width="105" height="13" fill="url(#evidaDark)"></rect>
+    <rect x="78" y="130" width="78" height="13" fill="url(#evidaDark)"></rect>
+    <circle cx="183" cy="110" r="14" fill="#9CAF9B"></circle>
+  </g>
+  <g transform="translate(20 250) scale(.58)">
+    <path d="M10 10h120v18H31v43h87v18H31v43h99v18H10z" fill="url(#evidaDark)"></path>
+    <path d="M168 10h26l60 122 60-122h26l-73 140h-26z" fill="url(#evidaDark)"></path>
+    <path d="M384 10h21v140h-21z" fill="url(#evidaDark)"></path>
+    <path fill-rule="evenodd" d="M452 10h80c81 0 134 45 134 70s-53 70-134 70h-80zm21 18v104h58c65 0 112-32 112-52s-47-52-112-52z" fill="url(#evidaDark)"></path>
+    <path d="M704 150h-25L746 10h27l67 140h-25L759 32z" fill="url(#evidaDark)"></path>
+    <circle cx="779" cy="114" r="14" fill="#9CAF9B"></circle>
+  </g>
+</svg>
