@@ -1,0 +1,10 @@
+/* Evida — Webfonts
+   The three brand typefaces are loaded from the Google Fonts CDN.
+   Inter         — UI, headlines, navigation, buttons
+   Source Sans 3 — long-form body / articles
+   IBM Plex Mono — scores, metrics, labels, values
+
+   NOTE: These are loaded from Google's CDN (not bundled as local .ttf/.woff2).
+   If you need fully offline / self-hosted font binaries, ask and we'll vendor them. */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap');

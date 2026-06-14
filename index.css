@@ -1,0 +1,72 @@
+/* ============================================================
+   Evida website — global + responsive styles
+   Component-level styling is done inline (Design-System tokens);
+   this file holds resets, document-level behaviour and the
+   responsive @media rules that inline styles cannot express.
+   ============================================================ */
+
+html, body { margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--evida-off-white);
+  color: var(--evida-mono-dark);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+::selection { background: var(--evida-soft-mist); }
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 92px; }
+
+/* ---- Landing: collapse multi-column grids on smaller screens ---- */
+@media (max-width: 960px) {
+  .evida-herogrid,
+  .evida-trustgrid,
+  .evida-featgrid { grid-template-columns: 1fr !important; }
+  .evida-feat-text { justify-content: flex-start !important; }
+  .evida-featgrid > div { order: unset !important; }
+  .evida-grid3 { grid-template-columns: 1fr 1fr !important; }
+  .evida-footgrid { grid-template-columns: 1fr 1fr !important; }
+  .evida-navlinks { display: none !important; }
+  /* Collapse two-column grids (incl. the inline-styled feature rows) to one column.
+     minmax(0,1fr) lets the track shrink below the content's min-width so fixed-width
+     inner cards/images can't force horizontal overflow. */
+  [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: minmax(0, 1fr) !important; }
+  .evida-featgrid > * { min-width: 0 !important; }
+  .evida-featgrid > * > * { max-width: 100% !important; }
+}
+
+@media (max-width: 620px) {
+  .evida-grid3,
+  .evida-grid2,
+  .evida-footgrid { grid-template-columns: 1fr !important; }
+  .evida-navsignin { display: none !important; }
+  .evida-float { display: none !important; }
+  /* Hero headline + eyebrow were sized for desktop; keep them inside the viewport on phones */
+  .evida-hero-h1 { font-size: 38px !important; overflow-wrap: break-word; hyphens: auto; }
+  /* Impressum page title — long German compound word ("Forschungsprototyp") must not overflow */
+  .evida-page-h1 { font-size: 30px !important; overflow-wrap: break-word; hyphens: auto; }
+  [style*="text-transform: uppercase"][style*="white-space: nowrap"] { white-space: normal !important; }
+  /* Feature columns have inline width:460px that won't shrink below the viewport — let them fill the track */
+  .evida-feat-text { min-width: 0 !important; }
+  .evida-feat-text > * { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+}
+
+/* ---- Impressum page ---- */
+@media (max-width: 560px) {
+  .evida-imp-row { grid-template-columns: 1fr !important; gap: 2px !important; }
+}
+
+/* ---- CTA links (were React buttons; static <a> now) ---- */
+.evida-cta { text-decoration: none; transition: filter 160ms var(--ease-out); }
+.evida-cta:hover { filter: brightness(0.96); }
+
+/* ---- FAQ accordion (native <details>, zero-JS) ---- */
+.evida-faq { background: #fff !important; }
+.evida-faq[open] { background: var(--evida-off-white) !important; }
+.evida-faq summary { list-style: none; }
+.evida-faq summary::-webkit-details-marker { display: none; }
+.evida-faq summary::marker { content: ""; }
+.evida-faq[open] .evida-chev { transform: rotate(180deg); }

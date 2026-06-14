@@ -1,0 +1,58 @@
+/* Evida — Color tokens
+   Calm, precise, digital. Deep teal + sage on warm off-white.
+   Base palette → semantic aliases. */
+
+:root {
+  /* ---- Brand base palette ---- */
+  --evida-deep-teal: #0F3D37;   /* primary brand: logo, headers, key CTAs */
+  --evida-dark-green: #082D29;  /* dark surfaces, gradients, strong contrast */
+  --evida-sage: #9CAF9B;        /* secondary accent: status, pills, icons */
+  --evida-off-white: #F6F5F2;   /* main background */
+  --evida-soft-stone: #E7E4DF;  /* cards, lines, neutral surfaces (a.k.a Warm Gray) */
+  --evida-graphite: #61666B;    /* secondary text, labels, icons (a.k.a Slate) */
+  --evida-mono-dark: #3E4043;   /* body copy, dark typography */
+  --evida-soft-mist: #DDE8E6;   /* subtle info boxes, score backgrounds, hover */
+  --evida-white: #FFFFFF;
+
+  /* ---- Functional / evidence colors ---- */
+  --evida-positive: #2F7D5B;    /* good evidence, confirmation, checks */
+  --evida-neutral: #D8A94A;     /* limited evidence, caution, review */
+  --evida-risk: #B8564D;        /* warnings, critical, not recommended */
+  --evida-data-blue: #4F6F8F;   /* charts, data viz, trends */
+
+  /* Tints of functional colors (12% over off-white) for soft fills */
+  --evida-positive-soft: #E3EEE8;
+  --evida-neutral-soft: #F5EAD2;
+  --evida-risk-soft: #F1E0DD;
+  --evida-data-blue-soft: #E1E8EF;
+
+  /* ---- Semantic aliases ---- */
+  /* Surfaces */
+  --surface-page: var(--evida-off-white);
+  --surface-card: var(--evida-white);
+  --surface-muted: var(--evida-soft-stone);
+  --surface-info: var(--evida-soft-mist);
+  --surface-inverse: var(--evida-deep-teal);
+
+  /* Text */
+  --text-heading: var(--evida-deep-teal);
+  --text-body: var(--evida-mono-dark);
+  --text-muted: var(--evida-graphite);
+  --text-on-dark: var(--evida-off-white);
+  --text-on-accent: var(--evida-deep-teal);
+
+  /* Brand / interactive */
+  --brand-primary: var(--evida-deep-teal);
+  --brand-primary-hover: #0B302B;   /* deep teal, darkened for hover */
+  --brand-accent: var(--evida-sage);
+
+  /* Lines & borders */
+  --line-subtle: rgba(97, 102, 107, 0.14);
+  --line-strong: rgba(15, 61, 55, 0.28);
+  --line-accent: var(--evida-sage);
+
+  /* Evidence status semantic mapping */
+  --evidence-strong: var(--evida-positive);
+  --evidence-limited: var(--evida-neutral);
+  --evidence-weak: var(--evida-risk);
+}
